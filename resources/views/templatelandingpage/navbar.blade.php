@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">IndigoShine</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        @guest
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#facility">Fasilitas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#room">Room</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#saran">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/login/">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/register/">Register</a>
+        </li>
+        @endguest
+        @auth
+            <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        @if (Auth::user()->role == 'admin')
+                        <a class="nav-link" href="admin.admin">Dashboard Admin</a>
+                        @endif
+                        @if (Auth::user()->role == 'resepsionis')
+                        <a class="nav-link" href="resepsionis.resepsionis">Dasboard Resepsionis</a>
+                        @endif
+                        @if (Auth::user()->role == 'tamu')
+                        <a class="nav-link" href="tamu.home">Dasboard Tamu</a>
+                        @endif
+                    </li>
+            </ul>
+        @endauth
+        </ul>
+    </div>
+    </div>
+</nav>
