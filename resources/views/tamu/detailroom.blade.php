@@ -81,7 +81,7 @@
                 <div class="mb-3">
                     <label for="dp_dibayar">Jika ingin melakukan dp</label>
                 <input type="checkbox" id="dp_dibayar" onclick="IfDibayar()">
-                <input type="number" class="form-control" style="display: none;" id="forms" name="dp_dibayar">
+                <input type="number" class="form-control" value="0" style="display: none;" id="forms" name="dp_dibayar">
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Pesan Sekarang</button>
                 </form>
