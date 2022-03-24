@@ -56,35 +56,68 @@
             </div>
             <div class="col-sm-12 my-3">
                 <h2 class="text-center">Silahkan Pesan Kamar di bawah ini</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="tanggal_rencanacheckin" class="form-label">Tanggal Checkin</label>
-                    <input type="date" class="form-control" id="tanggal_rencanacheckin" name="tanggal_rencanacheckin">
+                @if (empty(Auth::user()->name))
+                <div class="alert alert-danger">silahkan login && register jika ingin memesan kamar</div>
+                @else
+                @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
                 </div>
-                <div class="mb-3">
-                    <label for="tanggal_rencanacheckout" class="form-label">Tanggal Checkout</label>
-                    <input type="date" class="form-control" id="tanggal_rencanacheckout" name="tanggal_rencanacheckout">
-                </div>
-                <div class="mb-3">
-                    <label for="hargakamar" class="form-label">Harga Kamar</label>
-                    <input type="number" class="form-control" value="{{$kamars->hargakamarpermalam}}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="lama_menginap" class="form-label">Lama Menginap</label>
-                    <input type="number" class="form-control" id="lama_menginap" name="lama_menginap">
-                </div>
-                <div class="mb-3">
-                    <label for="jumlah_penginap" class="form-label">Jumlah Penginap</label>
-                    <input type="number" class="form-control" id="jumlah_penginap" name="jumlah_penginap">
-                    <small>Jumlah Orang Yang menginap di kamar</small>
-                </div>
-                <div class="mb-3">
+                @endif
+                <form action="/welcome/addorder" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="rencanacheckin" class="form-label">Tanggal Checkin</label>
+                        <input type="date" class="form-control @error('rencanacheckin') is-invalid @enderror" id="rencanacheckin" name="rencanacheckin" value="{{old('rencanacheckin')}}">
+                        @error('rencanacheckin')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3 d-none">
+                        <label for="kamar_id" class="form-label">Kamar Id</label>
+                        <input type="number" class="form-control @error('kamar_id') is-invalid @enderror" id="kamar_id" readonly name="kamar_id" value="{{$kamars->id}}">
+                        @error('kamar_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="rencanacheckout" class="form-label">Tanggal Checkout</label>
+                        <input type="date" class="form-control @error('rencanacheckout') is-invalid @enderror" id="rencanacheckout" name="rencanacheckout" value="{{old('rencanacheckout')}}">
+                        @error('rencanacheckout')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="hargakamar" class="form-label">Harga Kamar</label>
+                        <input type="number" class="form-control" value="{{$kamars->hargakamarpermalam}}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lama_menginap" class="form-label">Lama Menginap</label>
+                        <input type="number" class="form-control @error('lama_menginap') is-invalid @enderror" id="lama_menginap" name="lama_menginap" value="{{old('lama_menginap')}}">
+                        @error('lama_menginap')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="jumlah_penginap" class="form-label">Jumlah Penginap</label>
+                        <input type="number" class="form-control @error('jumlah_penginap') is-invalid @enderror" id="jumlah_penginap" name="jumlah_penginap" value="{{old('jumlah_penginap')}}">
+                        <small>Jumlah Orang Yang menginap di kamar</small>
+                        @error('jumlah_penginap')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
                     <label for="dp_dibayar">Jika ingin melakukan dp</label>
-                <input type="checkbox" id="dp_dibayar" onclick="IfDibayar()">
-                <input type="number" class="form-control" value="0" style="display: none;" id="forms" name="dp_dibayar">
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Pesan Sekarang</button>
-                </form>
+                    <input type="checkbox" id="dp_dibayar" onclick="IfDibayar()">
+                    <input type="number" class="form-control" value="0" style="display: none;" id="forms" name="dp_dibayar">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
+                    <a href="/" class="btn btn-danger">Back</a>
+                    </form>
+                @endif
+                @guest
+                <a href="/" class="btn btn-danger">Back</a>
+                @endguest
             </div>
         </div>
         </div>

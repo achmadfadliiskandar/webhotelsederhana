@@ -31,6 +31,24 @@
         @endguest
         @auth
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{Auth::user()->name}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                    </ul>
+                    </li>
                     <li class="nav-item">
                         @if (Auth::user()->role == 'admin')
                         <a class="nav-link" href="admin.admin">Dashboard Admin</a>
@@ -39,7 +57,7 @@
                         <a class="nav-link" href="resepsionis.resepsionis">Dasboard Resepsionis</a>
                         @endif
                         @if (Auth::user()->role == 'tamu')
-                        <a class="nav-link" href="tamu.home">Dasboard Tamu</a>
+                        <a class="nav-link" href="tamu.home">Dashboard Tamu</a>
                         @endif
                     </li>
             </ul>

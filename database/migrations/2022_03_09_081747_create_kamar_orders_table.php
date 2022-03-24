@@ -21,8 +21,9 @@ return new class extends Migration
             $table->integer('jumlahdibayar');
             $table->enum('metodepembayaran',['cash','transfer']);
             $table->enum('statuspembayaran',['lunas','belumlunas']);
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('resepsionis_id');
+            $table->enum('status',['confirmed','uncorfirmed','done'])->nullable();
             $table->timestamps();
         });
     }

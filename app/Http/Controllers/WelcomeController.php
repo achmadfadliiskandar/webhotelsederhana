@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Fasilitas;
 use App\Services\LogActivitiesServices\MainLogActivitiesServices;
 use Illuminate\Http\Request;
 use App\Models\FasilitasUmum;
 use App\Models\Kamar;
+use Illuminate\Support\Facades\Auth;
 
 class WelcomeController extends Controller
 {
@@ -29,5 +31,26 @@ class WelcomeController extends Controller
         $kamars = Kamar::with('detailkamar')->where('id',$id)->first();
         $fasilitass = Fasilitas::all();
         return view('tamu.detailroom',compact('kamars','fasilitass'));
+    }
+    public function addorder(Request $request){
+        // dd($request->all());
+        $request->validate([
+            'jumlah_penginap' => 'required|numeric',
+            'rencanacheckin' => 'required',
+            'rencanacheckout' => 'required',
+            'lama_menginap' => 'required|numeric',
+        ]);
+        $order = new Booking;
+        $order->kamar_id = $request->kamar_id;
+        $order->jumlah_penginap = $request->jumlah_penginap;
+        $order->rencanacheckin = $request->rencanacheckin;
+        $order->rencanacheckout = $request->rencanacheckout;
+        $order->totalharga = $order->kamar->hargakamarpermalam * $request->lama_menginap - $request->dp_dibayar;
+        $order->lama_menginap = $request->lama_menginap;
+        $order->dp_dibayar = $request->dp_dibayar;
+        $order->kodebooking = mt_rand(100,5000);
+        $order->user_id = Auth::id();
+        $order->save();
+        return redirect()->back()->with('status','Kamar Berhasil Di Pesan');
     }
 }

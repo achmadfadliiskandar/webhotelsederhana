@@ -20,14 +20,14 @@
     <div class="container mt-5 mb-5 pt-5 pb-5">
         <h2>Welcome User : {{Auth::user()->name}}</h2>
         <h4>As Role : {{Auth::user()->role}}</h4>
-        <a class="btn btn-primary" href="{{ route('logout') }}"
+        {{-- <a class="btn btn-primary" href="{{ route('logout') }}"
         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
     </a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
-    </form>
+    </form> --}}
     </div>
 
     <!-- footer -->
