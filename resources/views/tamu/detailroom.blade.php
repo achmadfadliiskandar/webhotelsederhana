@@ -64,6 +64,11 @@
                     {{ session('status') }}
                 </div>
                 @endif
+                @if (session('fail'))
+                <div class="alert alert-danger">
+                    {{ session('fail') }}
+                </div>
+                @endif
                 <form action="/welcome/addorder" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -91,14 +96,16 @@
                         <label for="hargakamar" class="form-label">Harga Kamar</label>
                         <input type="number" class="form-control" value="{{$kamars->hargakamarpermalam}}" readonly>
                     </div>
-                    <div class="mb-3">
-                        <label for="lama_menginap" class="form-label">Lama Menginap</label>
-                        <input type="number" class="form-control @error('lama_menginap') is-invalid @enderror" id="lama_menginap" name="lama_menginap" value="{{old('lama_menginap')}}">
+                    <label for="lama_menginap" class="form-label">Lama Menginap</label>
+                    <div class="input-group mb-3">
+                        <input type="number" readonly class="form-control @error('lama_menginap') is-invalid @enderror" id="lama_menginap" name="lama_menginap" value="{{old('lama_menginap')}}">
+                        <button class="btn btn-outline-secondary" type="button" onclick="lamaMenginap();">klik untuk mengetahui lama menginap anda</button>
                         @error('lama_menginap')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <small>lama anda menginap adalah : <b id="jmlhari"></b> hari</small>
+                    <div class="mb-3 mt-3">
                         <label for="jumlah_penginap" class="form-label">Jumlah Penginap</label>
                         <input type="number" class="form-control @error('jumlah_penginap') is-invalid @enderror" id="jumlah_penginap" name="jumlah_penginap" value="{{old('jumlah_penginap')}}">
                         <small>Jumlah Orang Yang menginap di kamar</small>
@@ -133,6 +140,17 @@
             } else {
                 forms.style.display = "none";
             }
+        }
+        function lamaMenginap(){
+            var rencanacheckin = document.getElementById("rencanacheckin").value;
+            var rencanacheckout = document.getElementById("rencanacheckout").value;
+            const tanggaldatang = new Date(rencanacheckin);
+            const tanggalpulang = new Date(rencanacheckout);
+            const waktu = Math.abs(tanggalpulang - tanggaldatang);
+            const hari = Math.ceil(waktu / (1000 * 60 * 60 * 24));
+            document.getElementById("lama_menginap").value = hari;
+            document.getElementById("jmlhari").innerHTML = hari;
+            // console.log(hari);
         }
     </script>
 
