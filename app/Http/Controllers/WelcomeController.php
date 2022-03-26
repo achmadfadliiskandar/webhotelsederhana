@@ -50,7 +50,7 @@ class WelcomeController extends Controller
         $order->dp_dibayar = $request->dp_dibayar;
         $order->kodebooking = mt_rand(100,5000);
         $order->user_id = Auth::id();
-        // untuk membuat max user dalam memesan kamar
+         // untuk membuat max user dalam memesan kamar
         if ($request->jumlah_penginap > $order->kamar->jumlahorangperkamar) {
             return redirect()->back()->with('fail','Kamar Gagal Di Pesan');
         } else {

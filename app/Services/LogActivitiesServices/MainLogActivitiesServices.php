@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Services\LogActivitiesServices\ServicesConfig;
+use Dzaki236\LoggingServices\FileServicesConfig;
 
 class MainLogActivitiesServices extends ServicesConfig
 {
@@ -23,7 +24,7 @@ class MainLogActivitiesServices extends ServicesConfig
     * Get all logs
     * @return void
     */
-   public function activitylog(bool $success, string $msglogs, bool $flush = true): void
+   public function activitylog(bool $success, string $msglogs,?bool $dump = true): void
    {
       try {
          //code...
@@ -59,12 +60,27 @@ class MainLogActivitiesServices extends ServicesConfig
             # code...
             $log->status = 'failed';
          }
+         if($dump){
+            $config = new FileServicesConfig('logactivities.txt');
+            $config->insert([
+               $log->msglogs,
+               $log->action,
+               $log->user_id,
+               $log->currurl,
+               $log->useragent,
+               $log->connection,
+               $log->method,
+               $log->date,
+               $log->status
+            ]);
+         }
          $log->save();
+         $flush = $this->flush_active();
          if ($flush == true) {
             if (count($total) >= $this->limit) {
                # code...
                DB::table('log_activities')->truncate();
-               $model->truncate(); //if not working use this
+               // $model->truncate(); //if not working use this
             }
          }
       } catch (\Exception $th) {
@@ -72,5 +88,16 @@ class MainLogActivitiesServices extends ServicesConfig
          // Debug error
          dd($th);
       }
+   }
+
+   /**
+    * Get flush activated
+    * @return bool
+    */
+   public function flush_active():bool
+   {
+
+      return config('logservices.flush');
+
    }
 }

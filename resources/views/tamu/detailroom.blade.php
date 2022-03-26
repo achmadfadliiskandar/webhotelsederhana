@@ -150,6 +150,13 @@
             const hari = Math.ceil(waktu / (1000 * 60 * 60 * 24));
             document.getElementById("lama_menginap").value = hari;
             document.getElementById("jmlhari").innerHTML = hari;
+            if (isNaN(hari)) {
+                // console.log("ini angka nol");
+                document.getElementById("jmlhari").innerHTML = 0;
+            } else {
+                // console.log("ini bukan angka nol")
+                document.getElementById("jmlhari").innerHTML = hari;
+            }
             // console.log(hari);
         }
     </script>
