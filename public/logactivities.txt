@@ -1,0 +1,15 @@
+
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 08:44:39|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 08:56:56|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:02:22|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:02:28|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:03:10|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:09:45|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:13:37|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:17:30|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:18:27|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:21:53|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:22:09|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:28:29|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:31:26|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36|keep-alive|GET|26-March-2022 09:33:13|success

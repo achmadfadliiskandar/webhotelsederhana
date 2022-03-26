@@ -50,6 +50,17 @@ class WelcomeController extends Controller
         $order->dp_dibayar = $request->dp_dibayar;
         $order->kodebooking = mt_rand(100,5000);
         $order->user_id = Auth::id();
+        // untuk membuat pesan tanggal mulai dari sekarang atau hari besok
+        if ($order->rencanacheckin < (date("Y-m-d"))) {
+            // dd("anda Tidak boleh");
+            return redirect()->back()->with('fail','Tanggal Pesan Tidak Boleh Lebih dari Tanggal sebelumnya');
+        }
+        // untuk membuat checkout dan chekin harus berbeda
+        // if ($order->rencanachekin == $order->rencanacheckout) {
+        //     dd("anda boleh");
+        // } else {
+        //     dd("anda tidak boleh");
+        // }
          // untuk membuat max user dalam memesan kamar
         if ($request->jumlah_penginap > $order->kamar->jumlahorangperkamar) {
             return redirect()->back()->with('fail','Kamar Gagal Di Pesan');

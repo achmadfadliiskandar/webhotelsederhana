@@ -51,13 +51,13 @@
                     </li>
                     <li class="nav-item">
                         @if (Auth::user()->role == 'admin')
-                        <a class="nav-link" href="admin.admin">Dashboard Admin</a>
+                        <a class="nav-link" href="/admin.admin">Dashboard Admin</a>
                         @endif
                         @if (Auth::user()->role == 'resepsionis')
-                        <a class="nav-link" href="resepsionis.resepsionis">Dasboard Resepsionis</a>
+                        <a class="nav-link" href="/resepsionis.resepsionis">Dasboard Resepsionis</a>
                         @endif
                         @if (Auth::user()->role == 'tamu')
-                        <a class="nav-link" href="tamu.home">Dashboard Tamu</a>
+                        <a class="nav-link" href="/tamu.home">Dashboard Tamu</a>
                         @endif
                     </li>
             </ul>
