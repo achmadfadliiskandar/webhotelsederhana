@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\FasilitasKamar;
 use App\Models\FasilitasUmum;
 use App\Models\Kamar;
@@ -33,12 +34,13 @@ class HomeController extends Controller
         $saran = Saran::all();
         $fasilitasumum = FasilitasUmum::all();
         $fasilitaskamar = FasilitasKamar::all();
+        $bookings = Booking::with('kamar','user')->get();
         if (Auth::user()->role == 'admin') {
             return view('admin.admin',compact('kamar','saran','fasilitasumum','fasilitaskamar'));
         } else if(Auth::user()->role == 'resepsionis'){
             return view('resepsionis.resepsionis');
         }else if(Auth::user()->role == 'tamu'){
-            return view('tamu.home');
+            return view('tamu.home',compact('bookings'));
         }
     }
 }

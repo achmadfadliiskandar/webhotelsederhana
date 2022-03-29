@@ -8,6 +8,7 @@ use App\Services\LogActivitiesServices\MainLogActivitiesServices;
 use Illuminate\Http\Request;
 use App\Models\FasilitasUmum;
 use App\Models\Kamar;
+use App\Models\KamarOrder;
 use Illuminate\Support\Facades\Auth;
 
 class WelcomeController extends Controller
@@ -54,6 +55,13 @@ class WelcomeController extends Controller
         if ($order->rencanacheckin < (date("Y-m-d"))) {
             // dd("anda Tidak boleh");
             return redirect()->back()->with('fail','Tanggal Pesan Tidak Boleh Lebih dari Tanggal sebelumnya');
+        }
+        if ($order->rencanacheckout < (date("Y-m-d"))) {
+            // dd("anda Tidak boleh");
+            return redirect()->back()->with('fail','Tanggal Pesan Tidak Boleh Kurang dari Tanggal Hari ini');
+        }
+        if ($order->rencanacheckout == $order->rencanacheckin) {
+            return redirect()->back()->with('fail','Minimal Pemesanan 1 Hari');
         }
         // untuk membuat checkout dan chekin harus berbeda
         // if ($order->rencanachekin == $order->rencanacheckout) {
