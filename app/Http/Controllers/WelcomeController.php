@@ -63,18 +63,17 @@ class WelcomeController extends Controller
         if ($order->rencanacheckout == $order->rencanacheckin) {
             return redirect()->back()->with('fail','Minimal Pemesanan 1 Hari');
         }
-        // untuk membuat checkout dan chekin harus berbeda
-        // if ($order->rencanachekin == $order->rencanacheckout) {
-        //     dd("anda boleh");
-        // } else {
-        //     dd("anda tidak boleh");
-        // }
-         // untuk membuat max user dalam memesan kamar
+// untuk membuat jumlah penginap pas dengan jumlah orang
         if ($request->jumlah_penginap > $order->kamar->jumlahorangperkamar) {
             return redirect()->back()->with('fail','Kamar Gagal Di Pesan');
         } else {
             $order->save();
             return redirect()->back()->with('status','Kamar Berhasil Di Pesan');
         }
+    }
+    public function removeorder($id){
+        $order = Booking::find($id);
+        $order->delete();
+        return redirect('tamu.home')->with('status','Pesanan Kamar Berhasil di batalkan');
     }
 }

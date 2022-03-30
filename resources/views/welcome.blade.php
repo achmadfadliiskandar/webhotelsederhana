@@ -44,7 +44,7 @@
     <section class="facility" id="facility">
         <div class="container">
             <h2 class="text-center">Fasilitas</h2>
-            <p class="text-center">Fasiltas yang ada di hotel</p>
+            <p class="text-center">Fasiltas umum yang ada di hotel</p>
             <div class="row">
                 @foreach($fasilitasumums as $fasilitasumum)
                 @if ($fasilitasumum->status == 'tidak_tersedia')

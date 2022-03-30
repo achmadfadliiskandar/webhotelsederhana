@@ -34,7 +34,8 @@ class HomeController extends Controller
         $saran = Saran::all();
         $fasilitasumum = FasilitasUmum::all();
         $fasilitaskamar = FasilitasKamar::all();
-        $bookings = Booking::with('kamar','user')->get();
+        $user =  Auth::user()->id;
+        $bookings = Booking::where('user_id',$user)->withTrashed()->latest()->paginate();
         if (Auth::user()->role == 'admin') {
             return view('admin.admin',compact('kamar','saran','fasilitasumum','fasilitaskamar'));
         } else if(Auth::user()->role == 'resepsionis'){

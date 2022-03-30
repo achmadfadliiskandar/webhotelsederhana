@@ -11,4 +11,11 @@ class KamarOrder extends Model
 
     protected $table = 'kamar_orders';
     protected $guarded = ['id'];
+
+    public function kamar(){
+        return $this->belongsTo(Kamar::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

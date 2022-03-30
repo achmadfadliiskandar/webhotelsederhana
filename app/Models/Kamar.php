@@ -24,4 +24,7 @@ class Kamar extends Model
     public function bookings(){
         return $this->hasOne(Booking::class);
     }
+    public function kamarorder(){
+        return $this->hasOne(KamarOrder::class);
+    }
 }

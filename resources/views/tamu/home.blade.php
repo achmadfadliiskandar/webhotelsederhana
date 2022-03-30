@@ -14,12 +14,56 @@
 <body>
     
     <!-- navbar -->
-    @include('templatelandingpage.navbar')
+    {{-- @include('templatelandingpage.navbar') --}}
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">IndigoShine</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{Auth::user()->name}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        @if (Auth::user()->role == 'tamu')
+                        <a class="nav-link" href="/tamu.home">Dashboard Tamu</a>
+                        @endif
+                    </li>
+                    <li class="nav-item">
+                        @if (Auth::user()->role == 'tamu')
+                        <a href="/tamu/pembayarankamar" class="nav-link">Pembayaran Kamar</a>
+                        @endif
+                    </li>
+            </ul>
+        </div>
+    </nav>
     <!-- end navbar -->
 
     <div class="container mt-5 mb-5 pt-5 pb-5">
+        <h1 class="text-center">Dashboard</h1>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <h2>Welcome User : {{Auth::user()->name}}</h2>
-        <h4>As Role : {{Auth::user()->role}}</h4>
+        <h4>Email : {{Auth::user()->email}}</h4>
         <hr>
         <h2 class="text-center py-3">Pesanan Kamar Anda </h2>
         <div class="container-fluid">
@@ -30,22 +74,47 @@
                         <th scope="col">Kode Booking</th>
                         <th scope="col">Kode Kamar</th>
                         <th scope="col">Detail Kamar</th>
-                        <th scope="col">Laporan PDF</th>
+                        <th scope="col">Tanggal Checkin</th>
+                        <th scope="col">Tanggal Checkout</th>
+                        {{-- <th scope="col">Laporan PDF</th> --}}
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                         @forelse($bookings as $no => $booking)
-                        @if ($booking->user_id == Auth::user()->id)
+                        {{-- first tabel --}}
                         <tr>
                             <td>{{$booking->kodebooking}}</td>
                             <td>{{$booking->kamar->nokamar}}</td>
-                            {{-- <td class="bg-danger">Punya anda</td> --}}
+                            <td>{{$booking->kamar->tipe_kamar->tipe_kamar}}</td>
+                            <td>{{$booking->rencanacheckin}}</td>
+                            <td>{{$booking->rencanacheckout}}</td>
+                            <td>
+                                @if ($booking->deleted_at)
+                                    <button class="btn btn-danger" disabled>Batalkan</button>
+                                @else
+                                @if ($booking->rencanacheckin >= date("Y-m-d"))
+                                {{-- bisa --}}
+                                <form action="/welcome/removeorder/{{$booking->id}}" onsubmit="return confirm('apakah yakin ingin membatalkan pesanan kamar ini??');" class="d-inline-block" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Batalkan</button>
+                                </form>
+                                @else
+                                    {{-- tidak --}}
+                                    <form action="" class="d-inline-block" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" disabled type="submit">Batalkan</button>
+                                    </form>
+                                @endif
+                                @endif
+                            </td>
                         </tr>
-                        @endif
+                        {{-- end tabel --}}
                         @empty
                             <tr>
-                                <td colspan="5" class="text-danger text-center">Anda Belum Memesan Kamar</td>
+                                <td colspan="7" class="text-danger text-center">Anda Belum Memesan Kamar</td>
                             </tr>
                         @endforelse
                     </tbody>
