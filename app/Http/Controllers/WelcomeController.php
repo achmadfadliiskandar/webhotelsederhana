@@ -73,7 +73,9 @@ class WelcomeController extends Controller
     }
     public function removeorder($id){
         $order = Booking::find($id);
+        $orderkamar = KamarOrder::where('id',$id);
         $order->delete();
+        $orderkamar->delete();
         return redirect('tamu.home')->with('status','Pesanan Kamar Berhasil di batalkan');
     }
 }

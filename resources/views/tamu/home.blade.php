@@ -45,11 +45,6 @@
                         <a class="nav-link" href="/tamu.home">Dashboard Tamu</a>
                         @endif
                     </li>
-                    <li class="nav-item">
-                        @if (Auth::user()->role == 'tamu')
-                        <a href="/tamu/pembayarankamar" class="nav-link">Pembayaran Kamar</a>
-                        @endif
-                    </li>
             </ul>
         </div>
     </nav>

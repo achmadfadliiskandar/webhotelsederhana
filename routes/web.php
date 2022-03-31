@@ -33,7 +33,6 @@ Route::get('resepsionis.login','loginresepsionis')->middleware('guest');
 Route::get('tamu/detailroom/{id}','detailroom');
 Route::post('/welcome/addorder','addorder');
 Route::delete('/welcome/removeorder/{id}','removeorder');
-// Route::get('/tamu.home','dashboarduser');
 });
 
 Route::controller(HomeController::class)->group(function(){

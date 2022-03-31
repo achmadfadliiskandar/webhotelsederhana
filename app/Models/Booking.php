@@ -20,5 +20,8 @@ class Booking extends Model
     public function kamar(){
         return $this->belongsTo(Kamar::class);
     }
+    public function kamarorder(){
+        return $this->belongsTo(KamarOrder::class);
+    }
     protected $fillable = ['user_id','kamar_id','kodebooking','jumlah_penginap','tanggal_rencanacheckin','tanggal_rencanacheckout','totalharga','lama_menginap','status'];
 }

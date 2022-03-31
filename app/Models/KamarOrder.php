@@ -15,6 +15,9 @@ class KamarOrder extends Model
     public function kamar(){
         return $this->belongsTo(Kamar::class);
     }
+    public function booking(){
+        return $this->hasOne(Booking::class);
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
