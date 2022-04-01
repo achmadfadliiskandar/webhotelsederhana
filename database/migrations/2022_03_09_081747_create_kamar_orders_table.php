@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('kamar_orders', function (Blueprint $table) {
             $table->id();
             $table->integer('booking_kode')->unique();
-            $table->integer('bookings_id');
+            // $table->integer('bookings_id');
             $table->date('tanggal_checkin');
             $table->date('tanggal_checkout');
             $table->integer('jumlahdibayar')->nullable();

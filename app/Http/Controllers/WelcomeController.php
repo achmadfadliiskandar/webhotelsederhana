@@ -78,4 +78,12 @@ class WelcomeController extends Controller
         $orderkamar->delete();
         return redirect('tamu.home')->with('status','Pesanan Kamar Berhasil di batalkan');
     }
+    public function buktibooking(){
+        $user = Auth::user()->id;
+        $bookings = Booking::where('user_id',$user)->paginate();
+        return view('tamu.buktibooking',compact('bookings'));
+    }
+    public function insertbooking(Request $request){
+        
+    }
 }

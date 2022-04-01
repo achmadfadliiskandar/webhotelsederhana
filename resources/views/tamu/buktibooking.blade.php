@@ -56,70 +56,44 @@
     <!-- end navbar -->
 
     <div class="container mt-5 mb-5 pt-5 pb-5">
-        <h1 class="text-center">Dashboard</h1>
+        <h1 class="text-center py-3">Cetak Bukti Pembayaran</h1>
+        <p class="text-center">silahkan cetak bukti pembayaran untuk bukti pembayaran di hotel</p>
         @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
         @endif
-        <h2>Welcome User : {{Auth::user()->name}}</h2>
-        <h4>Email : {{Auth::user()->email}}</h4>
-        <hr>
-        <h2 class="text-center py-3">Pesanan Kamar Anda </h2>
         <div class="container-fluid">
-            <div style="overflow-x: auto;">
-                <table style="width: 100%;" class="table table-bordered table table-striped table table-hover">
+            <form action="/tamu/insertbooking" method="POST">
+                @csrf
+                {{-- <div class="mb-3">
+                    <label for="booking_kode" class="form-label">Kode Booking</label>
+                    <input type="text" class="form-control" id="booking_kode" name="booking_kode" value="{{$booking->bookingkode}}">
+                </div> --}}
+                <table class="table table-bordered table table-striped table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">Kode Booking</th>
-                        <th scope="col">Kode Kamar</th>
-                        <th scope="col">Detail Kamar</th>
-                        <th scope="col">Tanggal Checkin</th>
-                        <th scope="col">Tanggal Checkout</th>
-                        {{-- <th scope="col">Laporan PDF</th> --}}
-                        <th scope="col">Action</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Kamar Yang di booking</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @forelse($bookings as $no => $booking)
-                        {{-- first tabel --}}
                         <tr>
-                            <td>{{$booking->kodebooking}}</td>
-                            <td>{{$booking->kamar->nokamar}}</td>
-                            <td>{{$booking->kamar->tipe_kamar->tipe_kamar}}</td>
-                            <td>{{$booking->rencanacheckin}}</td>
-                            <td>{{$booking->rencanacheckout}}</td>
-                            <td>
-                                @if ($booking->deleted_at)
-                                    <button class="btn btn-danger" disabled>Batalkan</button>
-                                @else
-                                @if ($booking->rencanacheckin >= date("Y-m-d"))
-                                {{-- bisa --}}
-                                <form action="/welcome/removeorder/{{$booking->id}}" onsubmit="return confirm('apakah yakin ingin membatalkan pesanan kamar ini??');" class="d-inline-block" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Batalkan</button>
-                                </form>
-                                @else
-                                    {{-- tidak --}}
-                                    <form action="" class="d-inline-block" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" disabled type="submit">Batalkan</button>
-                                    </form>
-                                @endif
-                                @endif
-                            </td>
+                            @forelse ($bookings as $booking)
+                                <td>{{$loop->iteration}}</td>
+                                <td>
+                                    <select class="form-select" aria-label="Default select example">
+                                    <option selected value="{{$booking->id}}">{{$booking->kamar->tipe_kamar->tipe_kamar}}</option>
+                                    </select>
+                                </td>
+                            @empty
+                                <td class="text-center text-danger" colspan="2">Anda Belum Memesan Kamar</td>
+                            @endforelse
                         </tr>
-                        {{-- end tabel --}}
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text-danger text-center">Anda Belum Memesan Kamar</td>
-                            </tr>
-                        @endforelse
                     </tbody>
                 </table>
-            </div>
+                <button type="submit" class="btn btn-primary w-100">Cetak Bukti</button>
+            </form>
         </div>
     </div>
 

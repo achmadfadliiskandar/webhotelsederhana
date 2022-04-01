@@ -148,3 +148,10 @@ halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x
 halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|31-March-2022 04:26:39|success
 halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|31-March-2022 04:38:57|success
 halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|31-March-2022 04:45:01|success
+halaman welcome|/||http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|01-April-2022 02:30:31|success
+halaman welcome|/||http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|01-April-2022 02:30:37|success
+halaman welcome|/||http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|01-April-2022 02:35:15|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|01-April-2022 02:36:43|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|01-April-2022 02:38:18|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|01-April-2022 02:38:18|success
+halaman welcome|/|3|http://127.0.0.1:8000|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36|keep-alive|GET|01-April-2022 03:02:15|success
