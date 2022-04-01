@@ -76,7 +76,7 @@ class WelcomeController extends Controller
     }
     public function removeorder($id){
         $order = Booking::find($id);
-        $orderkamar = KamarOrder::where('id',$id);
+        $orderkamar = DetailKamarOrder::where('bookings_id',$id);
         $order->delete();
         $orderkamar->delete();
         return redirect('tamu.home')->with('status','Pesanan Kamar Berhasil di batalkan');
@@ -93,12 +93,18 @@ class WelcomeController extends Controller
         $kamarorders = new KamarOrder;
         $kamarorders->booking_kode = $data['booking_kode'];
         $kamarorders->user_id = $data['user_id'];
+        $kamarorders->status = 'uncorfirmed';
+        $kamarorders->statuspembayaran = 'belumlunas';
         $kamarorders->save();
         if (count($data['bookings_id']) > 0) {
             foreach ($data['bookings_id'] as $item => $value) {
                 $databooking = array(
                     'kamar_orders_id' => $kamarorders->id,
                     'bookings_id' => $data['bookings_id'][$item],
+                    // 'kamars_id' => null,
+                    'tanggal_checkin' => $data['tanggal_checkin'][$item],
+                    'tanggal_checkout' => $data['tanggal_checkout'][$item],
+                    'user_id' => Auth::id()
                 );
                 DetailKamarOrder::create($databooking);
             }
@@ -107,10 +113,14 @@ class WelcomeController extends Controller
     }
     public function kamarpdf($id){
         $kamarorder = KamarOrder::with('detailkamarorder')->where('id',$id)->first();
-        $orderbooking = Booking::with('detailkamarorder')->where('id',$id)->first();
-        $pdf = FacadePdf::loadview('tamu.laporanbooking',compact('kamarorder','orderbooking'));
+        $pdf = FacadePdf::loadview('tamu.laporanbooking',compact('kamarorder'));
         return $pdf->stream();
         // return view('tamu.laporanbooking',compact('pdf'));
+    }
+
+    // khusus resepsionis
+    public function datatamu(){
+        return view('resepsionis.datatamu');
     }
 }
 

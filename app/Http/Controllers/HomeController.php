@@ -41,7 +41,7 @@ class HomeController extends Controller
         if (Auth::user()->role == 'admin') {
             return view('admin.admin',compact('kamar','saran','fasilitasumum','fasilitaskamar'));
         } else if(Auth::user()->role == 'resepsionis'){
-            return view('resepsionis.resepsionis');
+            return view('resepsionis.resepsionis',compact('kamar','saran','fasilitasumum','fasilitaskamar'));
         }else if(Auth::user()->role == 'tamu'){
             return view('tamu.home',compact('bookings','kamarorders'));
         }

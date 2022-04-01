@@ -22,6 +22,6 @@ class KamarOrder extends Model
         return $this->belongsTo(User::class);
     }
     public function detailkamarorder(){
-        return $this->hasMany(DetailKamarOrder::class);
+        return $this->hasMany(DetailKamarOrder::class,'kamar_orders_id');
     }
 }

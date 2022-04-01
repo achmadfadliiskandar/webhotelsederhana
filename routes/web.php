@@ -36,6 +36,7 @@ Route::delete('/welcome/removeorder/{id}','removeorder');
 Route::get('/tamu/buktibooking','buktibooking');
 Route::post('/tamu/insertbooking','insertbooking');
 Route::get('/tamu/laporanbooking/{id}','kamarpdf');
+Route::get('/resepsionis.datatamu','datatamu');
 });
 
 Route::controller(HomeController::class)->group(function(){

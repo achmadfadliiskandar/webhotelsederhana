@@ -86,6 +86,8 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Kamar Yang di booking</th>
+                        <th scope="col">Tanggal Checkin</th>
+                        <th scope="col">Tanggal Checkout</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -96,6 +98,17 @@
                                     <select class="form-select" name="bookings_id[]">
                                     <option value="{{$booking->id}}">{{$booking->kamar->tipe_kamar->tipe_kamar}}</option>
                                     </select>
+                                </td>
+                                {{-- <td class="d-none">
+                                    <select class="form-select" name="kamars_id[]">
+                                    <option value="{{$booking->kamar_id}}">{{$booking->kamar->tipe_kamar->tipe_kamar}}</option>
+                                    </select>
+                                </td> --}}
+                                <td>
+                                    <input type="date" class="form-control" name="tanggal_checkin[]" readonly value="{{$booking->rencanacheckin}}">
+                                </td>
+                                <td>
+                                    <input type="date" class="form-control" name="tanggal_checkout[]" readonly value="{{$booking->rencanacheckout}}">
                                 </td>
                             @empty
                                 <td class="text-center text-danger" colspan="2">Anda Belum Memesan Kamar</td>

@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        @guest
+        {{-- @guest --}}
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/">Home</a>
@@ -17,11 +17,15 @@
             <a class="nav-link" href="#facility">Fasilitas</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="#faq">Faq</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="#room">Room</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#saran">Contact</a>
         </li>
+        @guest
         <li class="nav-item">
             <a class="nav-link" href="/login/">Login</a>
         </li>
@@ -29,6 +33,7 @@
             <a class="nav-link" href="/register/">Register</a>
         </li>
         @endguest
+        {{-- @endguest --}}
         @auth
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">

@@ -11,7 +11,7 @@
 
     <title>IndigoShine-Hotel</title>
     </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
     
     <!-- navbar -->
     @include('templatelandingpage.navbar')
@@ -73,6 +73,54 @@
         </div>
     </section>
     <!-- end fasilitas -->
+
+    <!-- faq -->
+    <section class="faq" id="faq">
+        <hr>
+        <div class="container">
+            <h2 class="text-center">Faq</h2>
+            <p class="text-center">Frequently Asked Questions / apa saja yang sering di tanyakan di web ini</p>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Apa Tujuan Website ini di buat 
+                </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Untuk Mempermudah pesanan hotel dari jarak jauh sebelum membayar ke hotel</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Fitur apa saja yang ada di website ini
+                </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    1.Login
+                    2.Register
+                    3.Memesan Kamar secara jarak jauh
+                    4.history pesanan
+                </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Apakah tarif di situs web Anda per orang atau per kamar?
+                </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Semua tarif di situs web ini adalah per kamar per masa inap, kecuali ingin mengubah lama menginap bisa melapor kepada resepsionis</div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <hr>
+    </section>
+    <!-- end faq -->
 
     <!-- room -->
     <section class="room bg-light" id="room">
@@ -200,6 +248,10 @@
         padding-bottom: 3.5em;
     }
     .facility{
+        padding-top: 3.5em;
+        padding-bottom: 3.5em;
+    }
+    .faq{
         padding-top: 3.5em;
         padding-bottom: 3.5em;
     }

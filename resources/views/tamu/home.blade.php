@@ -140,7 +140,7 @@
                         </td>
                         </tr>
                     @empty
-                        <td class="text-danger text-center" colspan="2">Anda Belum Mempunyai Bukti Ke Hotel</td>
+                        <td class="text-danger text-center" colspan="3">Anda Belum Mempunyai Bukti Ke Hotel</td>
                     @endforelse
                     </tbody>
                 </table>

@@ -34,8 +34,11 @@
     </li>
 @endif
 @if (Auth::user()->role == 'resepsionis')
-<li class="nav-item">
-    <a href="/resepsionis.resepsionis/" class="nav-link list-group-item">Dashboard</a>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.resepsionis/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.resepsionis') ? 'border: 1px solid #eaea;' : '' }}">Dashboard</a>
+</li>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.datatamu/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.datatamu') ? 'border: 1px solid #fcba03;' : '' }}">Data Tamu</a>
 </li>
 @endif
 @if (Auth::user()->role == 'tamu')
