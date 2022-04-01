@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('booking_kode')->unique();
             // $table->integer('bookings_id');
-            $table->date('tanggal_checkin');
-            $table->date('tanggal_checkout');
+            // $table->date('tanggal_checkin');
+            // $table->date('tanggal_checkout');
             $table->integer('jumlahdibayar')->nullable();
             $table->enum('metodepembayaran',['cash','transfer'])->nullable();
             $table->enum('statuspembayaran',['lunas','belumlunas'])->nullable();

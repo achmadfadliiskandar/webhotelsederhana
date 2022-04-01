@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('kamar_id');
-            $table->integer('kodebooking');
+            // $table->integer('kodebooking');
             $table->integer('jumlah_penginap');
             $table->date('rencanacheckin');
             $table->date('rencanacheckout');

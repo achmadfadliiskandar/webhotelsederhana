@@ -71,7 +71,7 @@
                 <table style="width: 100%;" class="table table-bordered table table-striped table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">Kode Booking</th>
+                        {{-- <th scope="col">Kode Booking</th> --}}
                         <th scope="col">Kode Kamar</th>
                         <th scope="col">Detail Kamar</th>
                         <th scope="col">Tanggal Checkin</th>
@@ -84,7 +84,7 @@
                         @forelse($bookings as $no => $booking)
                         {{-- first tabel --}}
                         <tr>
-                            <td>{{$booking->kodebooking}}</td>
+                            {{-- <td>{{$booking->kodebooking}}</td> --}}
                             <td>{{$booking->kamar->nokamar}}</td>
                             <td>{{$booking->kamar->tipe_kamar->tipe_kamar}}</td>
                             <td>{{$booking->rencanacheckin}}</td>

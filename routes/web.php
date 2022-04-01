@@ -34,6 +34,7 @@ Route::get('tamu/detailroom/{id}','detailroom');
 Route::post('/welcome/addorder','addorder');
 Route::delete('/welcome/removeorder/{id}','removeorder');
 Route::get('/tamu/buktibooking','buktibooking');
+Route::post('/tamu/insertbooking','insertbooking');
 });
 
 Route::controller(HomeController::class)->group(function(){

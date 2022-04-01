@@ -66,10 +66,21 @@
         <div class="container-fluid">
             <form action="/tamu/insertbooking" method="POST">
                 @csrf
-                {{-- <div class="mb-3">
-                    <label for="booking_kode" class="form-label">Kode Booking</label>
-                    <input type="text" class="form-control" id="booking_kode" name="booking_kode" value="{{$booking->bookingkode}}">
-                </div> --}}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="booking_kode" class="form-label">Kode Booking</label>
+                            <input type="text" class="form-control" id="booking_kode" name="booking_kode" readonly value="<?php echo mt_rand(1000,20000) ?>">
+                            <small>Kode Untuk menyerahkan kpd resepsionis saat pembayaran</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="user_id" class="form-label">Nama Tamu</label>
+                        <select name="user_id" class="form-control" id="user_id">
+                            <option value="{{Auth::user()->id}}" selected>{{Auth::user()->name}}</option>
+                        </select>
+                    </div>
+                </div>
                 <table class="table table-bordered table table-striped table table-hover">
                     <thead>
                     <tr>
@@ -78,12 +89,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
                             @forelse ($bookings as $booking)
+                            <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>
-                                    <select class="form-select" aria-label="Default select example">
-                                    <option selected value="{{$booking->id}}">{{$booking->kamar->tipe_kamar->tipe_kamar}}</option>
+                                    <select class="form-select" name="bookings_id[]">
+                                    <option value="{{$booking->id}}">{{$booking->kamar->tipe_kamar->tipe_kamar}}</option>
                                     </select>
                                 </td>
                             @empty

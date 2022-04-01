@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\DetailKamarOrder;
 use App\Models\Fasilitas;
 use App\Services\LogActivitiesServices\MainLogActivitiesServices;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class WelcomeController extends Controller
         $order->totalharga = $order->kamar->hargakamarpermalam * $request->lama_menginap - $request->dp_dibayar;
         $order->lama_menginap = $request->lama_menginap;
         $order->dp_dibayar = $request->dp_dibayar;
-        $order->kodebooking = mt_rand(100,5000);
+        // $order->kodebooking = mt_rand(100,5000);
         $order->user_id = Auth::id();
         // untuk membuat pesan tanggal mulai dari sekarang atau hari besok
         if ($order->rencanacheckin < (date("Y-m-d"))) {
@@ -84,6 +85,22 @@ class WelcomeController extends Controller
         return view('tamu.buktibooking',compact('bookings'));
     }
     public function insertbooking(Request $request){
-        
+        // dd("DUMP DIE SUDAH BERFUNGSI");
+        $data = $request->all();
+        // dd($data);
+        $kamarorders = new KamarOrder;
+        $kamarorders->booking_kode = $data['booking_kode'];
+        $kamarorders->user_id = $data['user_id'];
+        $kamarorders->save();
+        if (count($data['bookings_id']) > 0) {
+            foreach ($data['bookings_id'] as $item => $value) {
+                $databooking = array(
+                    'kamar_orders_id' => $kamarorders->id,
+                    'bookings_id' => $data['bookings_id'][$item],
+                );
+                DetailKamarOrder::create($databooking);
+            }
+            return redirect('tamu.home')->with('status','Cetak Pembayaran Berhasil');
+        }
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('detail_kamar_orders', function (Blueprint $table) {
             $table->id();
-            $table->integer("kamar_orders")->nullable();
+            $table->integer("kamar_orders_id")->nullable();
             $table->integer("bookings_id");
             $table->timestamps();
         });
