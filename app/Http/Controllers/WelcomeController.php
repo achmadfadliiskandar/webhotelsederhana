@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\FasilitasUmum;
 use App\Models\Kamar;
 use App\Models\KamarOrder;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 
 class WelcomeController extends Controller
@@ -103,4 +105,12 @@ class WelcomeController extends Controller
             return redirect('tamu.home')->with('status','Cetak Pembayaran Berhasil');
         }
     }
+    public function kamarpdf($id){
+        $kamarorder = KamarOrder::with('detailkamarorder')->where('id',$id)->first();
+        $orderbooking = Booking::with('detailkamarorder')->where('id',$id)->first();
+        $pdf = FacadePdf::loadview('tamu.laporanbooking',compact('kamarorder','orderbooking'));
+        return $pdf->stream();
+        // return view('tamu.laporanbooking',compact('pdf'));
+    }
 }
+

@@ -16,4 +16,7 @@ class DetailKamarOrder extends Model
     public function bookings(){
         return $this->belongsTo(Booking::class);
     }
+    public function kamarorder(){
+        return $this->belongsTo(KamarOrder::class);
+    }
 }

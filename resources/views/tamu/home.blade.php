@@ -119,6 +119,31 @@
                         @endforelse
                     </tbody>
                 </table>
+                <hr>
+                <h2 class="text-center">Bukti Pembayaran</h2>
+                <p class="text-center">bukti yang digunakan untuk melakukan pembayaran saat memesan kamar</p>
+                <table class="table table-bordered table table-striped table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kode Booking</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($kamarorders as $kamarorder)
+                        <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$kamarorder->booking_kode}}</td>
+                        <td>
+                            <a href="/tamu/laporanbooking/{{$kamarorder->id}}" target="_blank" class="btn btn-info">Laporan Pdf</a>
+                        </td>
+                        </tr>
+                    @empty
+                        <td class="text-danger text-center" colspan="2">Anda Belum Mempunyai Bukti Ke Hotel</td>
+                    @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
