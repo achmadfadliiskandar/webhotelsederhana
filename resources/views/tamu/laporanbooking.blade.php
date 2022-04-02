@@ -78,16 +78,23 @@
             @if ($kamarorder->jumlahdibayar == NULL)
                 <span style="color: red;">Belum Dibayar</span>
             @else
-            {{$kamarorder->jumlahdibayar}}
+            {{number_format($kamarorder->jumlahdibayar,-2,".",".")}}
             @endif
         </h3>
         <h3>
-        @if ($kamarorder->methodepembayaran == NULL)
+        @if ($kamarorder->metodepembayaran == NULL)
             <span style="color: red;">Belum Ada Metode Pembayaran yang digunakan</span>
         @else
-        {{$kamarorder->methodepembayaran}}
+        {{$kamarorder->metodepembayaran}}
         @endif
         </h3>
+    </div>
+    <div>
+    @if ($kamarorder->bookings == date("Y-m-d"))
+        <strong style="color: red;">Tidak bisa dipakai sudah lewat waktu</strong>
+    @else
+        <strong style="color: #4adeae;">Bisa Di pakai untuk melakukan pembayaran</strong>
+    @endif
     </div>
 </body>
 </html>

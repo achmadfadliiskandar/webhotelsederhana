@@ -110,7 +110,7 @@
                     <td>
                         @if ($kamarorder->status == 'uncorfirmed')
                             {{-- {{"status belum terkonfirmasi"}} --}}
-                            <select name="metodepembayaran" class="form-control" id="metodepembayaran">
+                            <select name="status" class="form-control" id="metodepembayaran">
                                 <option value="confirmed">Terkonfirmasi</option>
                                 <option value="unconfirmed">Tidak Terkonfirmasi</option>
                                 <option value="done">Sudah Terkonfirmasi</option>
