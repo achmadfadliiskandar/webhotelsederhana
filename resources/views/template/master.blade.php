@@ -16,6 +16,8 @@
 <!-- Font Awesome Icons -->
 <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 <link href="{{asset('soft-ui-dashboard-main/assets/css/nucleo-svg.css')}}" rel="stylesheet" />
+<!-- datatabels -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 <!-- CSS Files -->
 <link id="pagestyle" href="{{asset('soft-ui-dashboard-main/assets/css/soft-ui-dashboard.css?v=1.0.3')}}" rel="stylesheet" />
 </head>
@@ -46,6 +48,8 @@ if (win && document.querySelector('#sidenav-scrollbar')) {
     Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
 }
 </script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+@stack('datatables')
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

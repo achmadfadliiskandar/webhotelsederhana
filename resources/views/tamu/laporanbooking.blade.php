@@ -38,16 +38,57 @@
         <h2 class="judul">Detail Pembayaran</h2>
         <p class="kalimat2">informasi mengenai pembayaran ada di bawah ini</p>
         <ul>
+            @php
+                $hargas = 0;
+            @endphp
             @foreach ($kamarorder->detailkamarorder as $item)
             <li class="first">Nama Kamar : {{$item->bookings->kamar->tipe_kamar->tipe_kamar}}</li>
             <li>Harga Kamar Per Malam : {{number_format($item->bookings->kamar->hargakamarpermalam,-2,".",".")}}</li>
             <li>Lama Menginap : {{$item->bookings->lama_menginap}}</li>
             <li>Dp : {{number_format($item->bookings->dp_dibayar,-2,".",".")}}</li>
             <li>Total Harga : {{number_format($item->bookings->totalharga,-2,".",".")}}</li>
+            @php
+                $hargas+=$item->bookings->totalharga;
+            @endphp
             @endforeach 
         </ul>
     </div>
-    <h3 class="judul">Total Keseluruhan yang harus di bayarkan : {{number_format($item->bookings->totalharga,-2,".",".")}}</h3>
+    <div class="judul">Total Keseluruhan yang harus di bayarkan : 
+    @php
+        echo number_format($hargas,-2,".",".");
+    @endphp
+    </div>
+    <div class="pemberitahuan">Untuk Pembayaran Dan Pengubahan status silahkan datang ke resepsionis</div>
+    <div class="kolomkonfirmasi">
+        <h2>Status Pembayaran 
+            @if ($kamarorder->statuspembayaran == 'belumlunas')
+                {{"belum lunas"}}
+            @else
+            {{$kamarorder->statuspembayaran}} 
+            @endif
+        </h2>
+        <h4>
+            @if ($kamarorder->status == 'uncorfirmed')
+                {{"status belum terkonfirmasi"}}
+            @else
+            {{$kamarorder->status}}
+            @endif
+        </h4>
+        <h3>
+            @if ($kamarorder->jumlahdibayar == NULL)
+                <span style="color: red;">Belum Dibayar</span>
+            @else
+            {{$kamarorder->jumlahdibayar}}
+            @endif
+        </h3>
+        <h3>
+        @if ($kamarorder->methodepembayaran == NULL)
+            <span style="color: red;">Belum Ada Metode Pembayaran yang digunakan</span>
+        @else
+        {{$kamarorder->methodepembayaran}}
+        @endif
+        </h3>
+    </div>
 </body>
 </html>
 
@@ -62,6 +103,11 @@
     }
     .buktipesan{
         overflow-x:auto; 
+    }
+    .pemberitahuan{
+        font-family:Arial, Helvetica, sans-serif;
+        padding-top:5px;
+        text-align: center;
     }
     .table{
         text-align: center;

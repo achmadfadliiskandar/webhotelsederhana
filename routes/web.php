@@ -37,6 +37,7 @@ Route::get('/tamu/buktibooking','buktibooking');
 Route::post('/tamu/insertbooking','insertbooking');
 Route::get('/tamu/laporanbooking/{id}','kamarpdf');
 Route::get('/resepsionis.datatamu','datatamu');
+Route::put('/welcome/datatamu/update/{id}','tambahpembayaran');
 });
 
 Route::controller(HomeController::class)->group(function(){

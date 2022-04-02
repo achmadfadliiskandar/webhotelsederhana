@@ -66,6 +66,10 @@ class WelcomeController extends Controller
         if ($order->rencanacheckout == $order->rencanacheckin) {
             return redirect()->back()->with('fail','Minimal Pemesanan 1 Hari');
         }
+        if ($order->rencanacheckout < $order->rencanacheckin) {
+            return redirect()->back()->with('fail','checkout dilarang kurang dari checkin');
+        }
+        
 // untuk membuat jumlah penginap pas dengan jumlah orang
         if ($request->jumlah_penginap > $order->kamar->jumlahorangperkamar) {
             return redirect()->back()->with('fail','Kamar Gagal Di Pesan');
@@ -120,7 +124,17 @@ class WelcomeController extends Controller
 
     // khusus resepsionis
     public function datatamu(){
-        return view('resepsionis.datatamu');
+        $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
+        return view('resepsionis.datatamu',compact('kamarorders'));
+    }
+    public function tambahpembayaran(Request $request,$id){
+        $tambahpembayaran = KamarOrder::find($id);
+        $tambahpembayaran->jumlahdibayar = $request->jumlahdibayar;
+        $tambahpembayaran->metodepembayaran = $request->metodepembayaran;
+        $tambahpembayaran->statuspembayaran = "lunas";
+        $tambahpembayaran->resepsionis_id = Auth::user()->id;
+        $tambahpembayaran->status = $request->status;
+        $tambahpembayaran->save();
+        return redirect()->back()->with('status','Pembayaran Berhasil Di Tambah');
     }
 }
-
