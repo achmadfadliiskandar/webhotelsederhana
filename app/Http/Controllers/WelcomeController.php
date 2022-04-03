@@ -75,7 +75,7 @@ class WelcomeController extends Controller
             return redirect()->back()->with('fail','Kamar Gagal Di Pesan');
         } else {
             $order->save();
-            return redirect()->back()->with('status','Kamar Berhasil Di Pesan');
+            return redirect('tamu.home')->with('status','Kamar Berhasil Di Pesan');
         }
     }
     public function removeorder($id){
@@ -136,5 +136,21 @@ class WelcomeController extends Controller
         $tambahpembayaran->status = $request->status;
         $tambahpembayaran->save();
         return redirect()->back()->with('status','Pembayaran Berhasil Di Tambah');
+    }
+    public function datakamar(){
+        $kamars = Kamar::all();
+        return view('resepsionis.datakamar',compact('kamars'));
+    }
+    public function cari(Request $request){
+        $cari = $request->cari;
+        
+        $kamars = Kamar::where('nokamar','like',"%".$cari."%")->paginate();
+        return view('resepsionis.datakamar',compact('kamars'));
+    }
+    public function updatestatus(Request $request,$id){
+        $kamars = Kamar::find($id);
+        $kamars->status = $request->status;
+        $kamars->save();
+        return redirect('resepsionis.datakamar')->with('status','Kamar Berhasil Di ubah');
     }
 }

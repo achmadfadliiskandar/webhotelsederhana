@@ -40,6 +40,9 @@
 <li class="nav-item mt-3 mb-3">
     <a href="/resepsionis.datatamu/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.datatamu') ? 'border: 1px solid #fcba03;' : '' }}">Data Tamu</a>
 </li>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.datakamar/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.datakamar') ? 'border: 1px solid #d3fc03;' : '' }}">Data Kamar</a>
+</li>
 @endif
 @if (Auth::user()->role == 'tamu')
 <li class="nav-item">
