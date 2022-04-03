@@ -37,7 +37,7 @@ class HomeController extends Controller
         $fasilitaskamar = FasilitasKamar::all();
         $user =  Auth::user()->id;
         $bookings = Booking::where('user_id',$user)->withTrashed()->latest()->paginate();
-        $kamarorders = KamarOrder::where('user_id',$user)->paginate();
+        $kamarorders = KamarOrder::with('detailkamarorder')->where('user_id',$user)->paginate();
         if (Auth::user()->role == 'admin') {
             return view('admin.admin',compact('kamar','saran','fasilitasumum','fasilitaskamar'));
         } else if(Auth::user()->role == 'resepsionis'){

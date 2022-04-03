@@ -93,7 +93,9 @@
                 <tbody>
                         @forelse ($bookings as $booking)
                         <tr>
+                            @if ($booking->rencanacheckin <= date("Y-m-d"))
                             <td>{{$loop->iteration}}</td>
+                            {{-- <td>tidak bisa</td> --}}
                             <td>
                                 @if ($booking->deleted_at == null)
                                 <select class="form-select" name="bookings_id[]">
@@ -112,6 +114,7 @@
                             <td>
                                 <input type="date" class="form-control" name="tanggal_checkout[]" readonly value="{{$booking->rencanacheckout}}">
                             </td>
+                            @endif
                         @empty
                             <td class="text-center text-danger" colspan="2">Anda Belum Memesan Kamar</td>
                         @endforelse

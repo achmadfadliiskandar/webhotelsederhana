@@ -50,6 +50,13 @@
             @php
                 $hargas+=$item->bookings->totalharga;
             @endphp
+            <li>Keterangan : 
+                @if ($item->tanggal_checkin > date("Y-m-d"))
+                <strong style="color: red;">Tidak bisa dipakai Karena Sudah lewat waktu</strong>
+                @else
+                <strong style="color: blue;">Masih Bisa dipakai</strong>
+                @endif
+            </li>
             @endforeach 
         </ul>
     </div>
@@ -88,13 +95,6 @@
         {{$kamarorder->metodepembayaran}}
         @endif
         </h3>
-    </div>
-    <div>
-    @if ($kamarorder->bookings == date("Y-m-d"))
-        <strong style="color: red;">Tidak bisa dipakai sudah lewat waktu</strong>
-    @else
-        <strong style="color: #4adeae;">Bisa Di pakai untuk melakukan pembayaran</strong>
-    @endif
     </div>
 </body>
 </html>
