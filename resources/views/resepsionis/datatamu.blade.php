@@ -65,21 +65,21 @@
                     <td>
                         @foreach ($kamarorder->detailkamarorder as $item)
                         <ol>
-                            <li>{{$item->bookings->kamar->tipe_kamar->tipe_kamar}}</li>
+                            <li>{{$item->kamars->tipe_kamar->tipe_kamar}}</li>
                         </ol>
                     @endforeach
                     </td>
                     <td>
                         @foreach ($kamarorder->detailkamarorder as $item)
                         <ol>
-                            <li>{{number_format($item->bookings->kamar->hargakamarpermalam,-2,".",".")}}</li>
+                            <li>{{number_format($item->kamars->hargakamarpermalam,-2,".",".")}}</li>
                         </ol>
                     @endforeach
                     </td>
                     <td>
                         @foreach ($kamarorder->detailkamarorder as $item)
                         <ol>
-                            {{$item->bookings->lama_menginap}}</li>
+                            {{$item->lama_menginap}}</li>
                         </ol>
                     @endforeach
                     </td>
@@ -89,7 +89,7 @@
                     @endphp
                     @foreach ($kamarorder->detailkamarorder as $item)
                     @php
-                    $hargas += $item->bookings->totalharga;
+                    $hargas += $item->totalharga;
                     @endphp
                     @endforeach
                     @php
@@ -97,27 +97,21 @@
                     @endphp
                     </td>
                     <td>
-                        @if ($kamarorder->metodepembayaran == NULL)
                         {{-- <span class="text-danger">belum di bayar</span> --}}
                         <select name="metodepembayaran" class="form-control" id="metodepembayaran">
+                            <option value="{{$kamarorder->metodepembayaran}}">{{$kamarorder->metodepembayaran}}</option>
                             <option value="cash">Cash</option>
                             <option value="transfer">Transfer</option>
                         </select>
-                        @else
-                        {{$kamarorder->metodepembayaran}}
-                        @endif
                     </td>
                     <td>
-                        @if ($kamarorder->status == 'uncorfirmed')
                             {{-- {{"status belum terkonfirmasi"}} --}}
                             <select name="status" class="form-control" id="metodepembayaran">
+                                <option value="unconfirmed">Tidak Terkonfirmasi</option>
                                 <option value="confirmed">Terkonfirmasi</option>
                                 <option value="unconfirmed">Tidak Terkonfirmasi</option>
                                 <option value="done">Sudah Terkonfirmasi</option>
                             </select>
-                        @else
-                        {{$kamarorder->status}}
-                        @endif
                     </td>
                     <td>
                             <button class="btn btn-success" type="submit">Tambahkan Pembayaran</button>

@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('detail_kamar_orders', function (Blueprint $table) {
             $table->id();
             $table->integer("kamar_orders_id")->nullable();
-            // $table->integer("kamars_id");
+            $table->integer("kamars_id");
             $table->date('tanggal_checkin');
             $table->date('tanggal_checkout');
-            // $table->integer("jumlah_penginap");
+            $table->integer("jumlah_penginap");
+            $table->integer("totalharga");
+            $table->integer("lama_menginap");
+            $table->integer("dp_dibayar")->nullable();
             $table->integer("bookings_id");
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

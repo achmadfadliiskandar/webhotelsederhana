@@ -72,7 +72,7 @@ class WelcomeController extends Controller
         
 // untuk membuat jumlah penginap pas dengan jumlah orang
         if ($request->jumlah_penginap > $order->kamar->jumlahorangperkamar) {
-            return redirect()->back()->with('fail','Kamar Gagal Di Pesan');
+            return redirect()->back()->with('fail','Jumlah Orang Tidak Boleh Lebih Dari Maksimal');
         } else {
             $order->save();
             return redirect('tamu.home')->with('status','Kamar Berhasil Di Pesan');
@@ -105,7 +105,11 @@ class WelcomeController extends Controller
                 $databooking = array(
                     'kamar_orders_id' => $kamarorders->id,
                     'bookings_id' => $data['bookings_id'][$item],
-                    // 'kamars_id' => null,
+                    'kamars_id' => $data['kamars_id'][$item],
+                    'jumlah_penginap' => $data['jumlah_penginap'][$item],
+                    'totalharga' => $data['totalharga'][$item],
+                    'lama_menginap' => $data['lama_menginap'][$item],
+                    'dp_dibayar' => $data['dp_dibayar'][$item],
                     'tanggal_checkin' => $data['tanggal_checkin'][$item],
                     'tanggal_checkout' => $data['tanggal_checkout'][$item],
                     'user_id' => Auth::id()

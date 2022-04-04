@@ -85,15 +85,29 @@
                 <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Kamar Yang di booking</th>
+                    <th scope="col">Kamar</th>
+                    <th scope="col">No Kamar</th>
+                    <th scope="col">Jumlah Penginap</th>
+                    <th scope="col">Harga Kamar</th>
+                    <th scope="col">Lama Menginap</th>
+                    <th scope="col">DP</th>
+                    <th scope="col">Total Harga</th>
                     <th scope="col">Tanggal Checkin</th>
                     <th scope="col">Tanggal Checkout</th>
                 </tr>
                 </thead>
                 <tbody>
+                    @if (count($bookings) >= 1)
+                            <script>
+                                alert("Silahkan Cetak Bukti Pembayaran")
+                            </script>
+                        @else
+                            <script>
+                                alert("Silahkan Booking Terlebih Dahulu",window.location.assign("/tamu.home"))
+                            </script>
+                        @endif
                         @forelse ($bookings as $booking)
                         <tr>
-                            @if ($booking->rencanacheckin <= date("Y-m-d"))
                             <td>{{$loop->iteration}}</td>
                             {{-- <td>tidak bisa</td> --}}
                             <td>
@@ -103,20 +117,33 @@
                                 </select>
                                 @endif
                             </td>
-                            {{-- <td class="d-none">
+                            <td>
                                 <select class="form-select" name="kamars_id[]">
-                                <option value="{{$booking->kamar_id}}">{{$booking->kamar->tipe_kamar->tipe_kamar}}</option>
+                                <option value="{{$booking->kamar_id}}">{{$booking->kamar->nokamar}}</option>
                                 </select>
-                            </td> --}}
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" name="jumlah_penginap[]" readonly value="{{$booking->jumlah_penginap}}">
+                            </td>
+                            <td>{{$booking->kamar->hargakamarpermalam}}</td>
+                            <td>
+                                <input type="number" class="form-control" name="lama_menginap[]" readonly value="{{$booking->lama_menginap}}">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" name="dp_dibayar[]" readonly value="{{$booking->dp_dibayar}}">
+                            </td>
+                            <td>
+                                <input type="number" name="totalharga[]" class="form-control" readonly value="{{$booking->totalharga}}">
+                            </td>
                             <td>
                                 <input type="date" class="form-control" name="tanggal_checkin[]" readonly value="{{$booking->rencanacheckin}}">
                             </td>
                             <td>
                                 <input type="date" class="form-control" name="tanggal_checkout[]" readonly value="{{$booking->rencanacheckout}}">
                             </td>
-                            @endif
+
                         @empty
-                            <td class="text-center text-danger" colspan="2">Anda Belum Memesan Kamar</td>
+                            <td class="text-center text-danger" colspan="10">Anda Belum Memesan Kamar</td>
                         @endforelse
                     </tr>
                 </tbody>

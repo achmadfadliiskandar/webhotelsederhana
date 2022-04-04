@@ -26,7 +26,7 @@
                 @foreach ($kamarorder->detailkamarorder as $item)
                     <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$item->bookings->kamar->tipe_kamar->tipe_kamar}}</td>
+                        <td>{{$item->kamars->tipe_kamar->tipe_kamar}}</td>
                         <td>{{$item->tanggal_checkin}}</td>
                         <td>{{$item->tanggal_checkout}}</td>
                     </tr>
@@ -42,16 +42,16 @@
                 $hargas = 0;
             @endphp
             @foreach ($kamarorder->detailkamarorder as $item)
-            <li class="first">Nama Kamar : {{$item->bookings->kamar->tipe_kamar->tipe_kamar}}</li>
-            <li>Harga Kamar Per Malam : {{number_format($item->bookings->kamar->hargakamarpermalam,-2,".",".")}}</li>
-            <li>Lama Menginap : {{$item->bookings->lama_menginap}}</li>
-            <li>Dp : {{number_format($item->bookings->dp_dibayar,-2,".",".")}}</li>
-            <li>Total Harga : {{number_format($item->bookings->totalharga,-2,".",".")}}</li>
+            <li class="first">Nama Kamar : {{$item->kamars->tipe_kamar->tipe_kamar}}</li>
+            <li>Harga Kamar Per Malam : {{number_format($item->kamars->hargakamarpermalam,-2,".",".")}}</li>
+            <li>Lama Menginap : {{$item->lama_menginap}}</li>
+            <li>Dp : {{number_format($item->dp_dibayar,-2,".",".")}}</li>
+            <li>Total Harga : {{number_format($item->totalharga,-2,".",".")}}</li>
             @php
-                $hargas+=$item->bookings->totalharga;
+                $hargas+=$item->totalharga;
             @endphp
             <li>Keterangan : 
-                @if ($item->tanggal_checkin > date("Y-m-d"))
+                @if ($item->tanggal_checkin < date("Y-m-d"))
                 <strong style="color: red;">Tidak bisa dipakai Karena Sudah lewat waktu</strong>
                 @else
                 <strong style="color: blue;">Masih Bisa dipakai</strong>

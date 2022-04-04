@@ -93,21 +93,14 @@
                                 @if ($booking->deleted_at)
                                     <button class="btn btn-danger" disabled>Batalkan</button>
                                 @else
-                                @if ($booking->rencanacheckin <= date("Y-m-d"))
+                                
                                 {{-- bisa --}}
                                 <form action="/welcome/removeorder/{{$booking->id}}" onsubmit="return confirm('apakah yakin ingin membatalkan pesanan kamar ini??');" class="d-inline-block" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Batalkan</button>
                                 </form>
-                                @else
-                                    {{-- tidak --}}
-                                    <form action="" class="d-inline-block" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" disabled type="submit">Batalkan</button>
-                                    </form>
-                                @endif
+
                                 @endif
                             </td>
                         </tr>
