@@ -19,9 +19,12 @@ return new class extends Migration
         AFTER INSERT ON `detail_kamar_orders` 
         FOR EACH ROW 
         BEGIN 
+        UPDATE kamars
+        INNER JOIN bookings ON kamars.id = bookings.kamar_id SET kamars.status = tidak_tersedia
+        WHERE kamars.id = bookings.kamar_id;
         DELETE FROM bookings 
         WHERE bookings.user_id = user_id; 
-        END;
+        END
         ');
     }
 
