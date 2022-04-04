@@ -20,6 +20,7 @@
                     <th scope="col">Booking Kode</th>
                     <th scope="col">Tamu</th>
                     <th scope="col">Jumlah Di Bayar</th>
+                    <th scope="col">Kembalian</th>
                     <th scope="col">Tanggal Checkin</th>
                     <th scope="col">Tanggal Checkout</th>
                     <th scope="col">Kamar</th>
@@ -47,6 +48,9 @@
                         @else
                         {{number_format($kamarorder->jumlahdibayar,-2,".",".")}}
                         @endif
+                    </td>
+                    <td>
+                        {{number_format($kamarorder->kembalian,-2,".",".")}}
                     </td>
                     <td>
                         @foreach ($kamarorder->detailkamarorder as $item)
@@ -92,9 +96,13 @@
                     $hargas += $item->totalharga;
                     @endphp
                     @endforeach
-                    @php
-                    echo number_format($hargas,-2,".",".");
-                    @endphp
+                    @if ($kamarorder->jumlahdibayar != null)
+                    {{number_format($kamarorder->jumlahdibayar,-2,".",".")}}
+                    @else
+                    <?php ?>
+                    <input type="number" readonly name="totalharga" class="form-control" value="<?php echo $hargas; ?>">
+                    <?php ?>
+                    @endif
                     </td>
                     <td>
                         {{-- <span class="text-danger">belum di bayar</span> --}}
@@ -118,7 +126,7 @@
                         </form>
                     </td>
                 @empty
-                    <td class="text-center text-danger">Pesanan Belum Ada</td>
+                    <td class="text-center text-danger" colspan="14">Pesanan Belum Ada</td>
                 @endforelse
                 </tr>
                 </tbody>

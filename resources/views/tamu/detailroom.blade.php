@@ -69,6 +69,7 @@
                     {{ session('fail') }}
                 </div>
                 @endif
+                @if ($kamars->status == 'tersedia')
                 <form action="/welcome/addorder" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -121,6 +122,9 @@
                     <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
                     <a href="/" class="btn btn-danger">Back</a>
                     </form>
+                @else
+                <div class="alert alert-danger">Kamar Tidak Tersedia</div>
+                @endif
                 @endif
                 @guest
                 <a href="/" class="btn btn-danger">Back</a>

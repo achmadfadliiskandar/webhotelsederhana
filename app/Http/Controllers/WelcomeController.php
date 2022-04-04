@@ -135,6 +135,8 @@ class WelcomeController extends Controller
         $tambahpembayaran = KamarOrder::find($id);
         $tambahpembayaran->jumlahdibayar = $request->jumlahdibayar;
         $tambahpembayaran->metodepembayaran = $request->metodepembayaran;
+        $tambahpembayaran->totalharga = $request->totalharga;
+        $tambahpembayaran->kembalian = $tambahpembayaran->jumlahdibayar - $tambahpembayaran->totalharga;
         $tambahpembayaran->statuspembayaran = "lunas";
         $tambahpembayaran->resepsionis_id = Auth::user()->id;
         $tambahpembayaran->status = $request->status;
@@ -142,19 +144,8 @@ class WelcomeController extends Controller
         return redirect()->back()->with('status','Pembayaran Berhasil Di Tambah');
     }
     public function datakamar(){
-        $kamars = Kamar::all();
-        return view('resepsionis.datakamar',compact('kamars'));
-    }
-    public function cari(Request $request){
-        $cari = $request->cari;
-        
-        $kamars = Kamar::where('nokamar','like',"%".$cari."%")->paginate();
-        return view('resepsionis.datakamar',compact('kamars'));
-    }
-    public function updatestatus(Request $request,$id){
-        $kamars = Kamar::find($id);
-        $kamars->status = $request->status;
-        $kamars->save();
-        return redirect('resepsionis.datakamar')->with('status','Kamar Berhasil Di ubah');
+        return abort(404);
+        // $kamars = Kamar::all();
+        // return view('resepsionis.datakamar',compact('kamars'));
     }
 }

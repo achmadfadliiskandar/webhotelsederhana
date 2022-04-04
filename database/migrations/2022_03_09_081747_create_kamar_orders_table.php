@@ -19,6 +19,7 @@ return new class extends Migration
             // $table->date('tanggal_checkin');
             // $table->date('tanggal_checkout');
             $table->integer('jumlahdibayar')->nullable();
+            $table->integer('totalharga')->nullable();
             $table->integer('kembalian')->nullable();
             $table->enum('metodepembayaran',['cash','transfer'])->nullable();
             $table->enum('statuspembayaran',['lunas','belumlunas'])->nullable();
