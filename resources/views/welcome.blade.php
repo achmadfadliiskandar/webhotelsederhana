@@ -113,7 +113,7 @@
                 </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Semua tarif di situs web ini adalah per kamar per masa inap, kecuali ingin mengubah lama menginap bisa melapor kepada resepsionis</div>
+                <div class="accordion-body">Semua tarif di situs web ini adalah per masa inap</div>
                 </div>
             </div>
             </div>
