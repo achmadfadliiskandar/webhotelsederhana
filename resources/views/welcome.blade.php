@@ -128,7 +128,6 @@
             <h2 class="text-center">Room</h2>
             <div class="row">
                 @foreach($kamars as $kamar)
-                @if ($kamar->status == 'tersedia')
                 <div class="col-sm-4 mb-3 mt-3">
                     <div class="card" style="width: 100%;">
                         <img src="{{asset('image/'.$kamar->image)}}" class="card-img-top" style="height: 200px;" alt="gambar kosong">
@@ -140,7 +139,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
                 @endforeach
                 </div>
         </div>
@@ -169,11 +167,21 @@
                     </div>
                     <div class="card my-3" style="width: 100%;">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Instagram</li>
-                            <li class="list-group-item">WhatsApp</li>
-                            <li class="list-group-item">Telegram</li>
-                            <li class="list-group-item">Github</li>
-                            <li class="list-group-item">Facebook</li>
+                            <li class="list-group-item">
+                                <a href="https://www.instagram.com/17achmadfadliskandar" class="text-dark text-decoration-none" target="_blank">Instagram</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://wa.me/0877327858528" class="text-dark text-decoration-none" target="_blank">WhatsApp</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://t.me/achmadfadliskandar" class="text-dark text-decoration-none" target="_blank">Telegram</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://github.com/achmadfadliiskandar" class="text-dark text-decoration-none" target="_blank">Github</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="https://achmadf1.my.id/" class="text-dark text-decoration-none" target="_blank">Developer</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

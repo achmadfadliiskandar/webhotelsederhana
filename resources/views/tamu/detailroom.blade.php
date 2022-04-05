@@ -124,6 +124,7 @@
                     </form>
                 @else
                 <div class="alert alert-danger">Kamar Tidak Tersedia</div>
+                <a href="/" class="btn btn-danger">Back</a>
                 @endif
                 @endif
                 @guest

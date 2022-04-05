@@ -123,6 +123,7 @@
                     </td>
                     <td>
                             <button class="btn btn-success" type="submit">Tambahkan Pembayaran</button>
+                            <a target="_blank" href="/tamu/laporanbooking/{{$kamarorder->id}}" class="btn btn-danger">PDF</a>
                         </form>
                     </td>
                 @empty
