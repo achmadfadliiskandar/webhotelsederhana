@@ -97,7 +97,7 @@
                     @endphp
                     @endforeach
                     @if ($kamarorder->jumlahdibayar != null)
-                    {{number_format($kamarorder->jumlahdibayar,-2,".",".")}}
+                    {{number_format($kamarorder->totalharga,-2,".",".")}}
                     @else
                     <?php ?>
                     <input type="number" readonly name="totalharga" class="form-control" value="<?php echo $hargas; ?>">
