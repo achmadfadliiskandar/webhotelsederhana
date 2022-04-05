@@ -21,9 +21,9 @@ class WelcomeController extends Controller
     }
     public function welcome(){
         // $this->logging->activitylog(true,'halaman welcome');
-        // $fasilitasumums = FasilitasUmum::all();
-        // $kamars = Kamar::all();
-        // return view('welcome',compact('fasilitasumums','kamars'));
+        $fasilitasumums = FasilitasUmum::all();
+        $kamars = Kamar::all();
+        return view('welcome',compact('fasilitasumums','kamars'));
     }
     public function loginadmin(){
         return view('admin.login');
