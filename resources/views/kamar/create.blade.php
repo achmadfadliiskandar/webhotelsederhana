@@ -6,7 +6,7 @@
 
 @section('content')
     <h2>Tambah Kamar</h2>
-<form action="/kamar.store/" method="POST" enctype="multipart/form-data">
+<form action="/kamar.store" method="POST" enctype="multipart/form-data">
     @csrf
 <div class="mb-3">
     <label for="exampleDataList" class="form-label">Tipe Kamar</label>
