@@ -143,9 +143,12 @@ class WelcomeController extends Controller
         $tambahpembayaran->save();
         return redirect()->back()->with('status','Pembayaran Berhasil Di Tambah');
     }
-    public function datakamar(){
-        return abort(404);
-        // $kamars = Kamar::all();
-        // return view('resepsionis.datakamar',compact('kamars'));
+    //khusus resepsionis
+    public function pembayaran(){
+        $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
+        return view('resepsionis.pembayaran',compact('kamarorders'));
+    }
+    public function updatepayment($id){
+        return $id;
     }
 }

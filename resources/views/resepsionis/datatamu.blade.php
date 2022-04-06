@@ -29,7 +29,6 @@
                     <th scope="col">Total bayar</th>
                     <th scope="col">Methode Pembayaran</th>
                     <th scope="col">Status Pembayaran</th>
-                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -96,35 +95,14 @@
                     $hargas += $item->totalharga;
                     @endphp
                     @endforeach
-                    @if ($kamarorder->jumlahdibayar != null)
-                    {{number_format($kamarorder->jumlahdibayar,-2,".",".")}}
-                    @else
-                    <?php ?>
-                    <input type="number" readonly name="totalharga" class="form-control" value="<?php echo $hargas; ?>">
-                    <?php ?>
-                    @endif
+                    {{number_format($kamarorder->totalharga,-2,".",".")}}
                     </td>
                     <td>
                         {{-- <span class="text-danger">belum di bayar</span> --}}
-                        <select name="metodepembayaran" class="form-control" id="metodepembayaran">
-                            <option value="{{$kamarorder->metodepembayaran}}">{{$kamarorder->metodepembayaran}}</option>
-                            <option value="cash">Cash</option>
-                            <option value="transfer">Transfer</option>
-                        </select>
+                        {{$kamarorder->metodepembayaran}}
                     </td>
                     <td>
-                            {{-- {{"status belum terkonfirmasi"}} --}}
-                            <select name="status" class="form-control" id="metodepembayaran">
-                                <option value="unconfirmed">Tidak Terkonfirmasi</option>
-                                <option value="confirmed">Terkonfirmasi</option>
-                                <option value="unconfirmed">Tidak Terkonfirmasi</option>
-                                <option value="done">Sudah Terkonfirmasi</option>
-                            </select>
-                    </td>
-                    <td>
-                            <button class="btn btn-success" type="submit">Tambahkan Pembayaran</button>
-                            <a target="_blank" href="/tamu/laporanbooking/{{$kamarorder->id}}" class="btn btn-danger">PDF</a>
-                        </form>
+                        {{$kamarorder->status}}
                     </td>
                 @empty
                     <td class="text-center text-danger" colspan="14">Pesanan Belum Ada</td>
