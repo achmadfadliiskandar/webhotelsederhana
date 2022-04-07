@@ -32,6 +32,9 @@
     <li class="nav-item mt-3 mb-3">
         <a href="/fasilitas_kamars" class="nav-link list-group-item" style="{{ request()->is('fasilitas_kamars') ? 'border: 1px solid #de8d37;' : '' }}">Fasilitas Kamar</a>
     </li>
+    <li class="nav-item mt-3 mb-3">
+        <a href="/user" class="nav-link list-group-item" style="{{ request()->is('user') ? 'border: 1px solid #f5a442;' : '' }}">User</a>
+    </li>
 @endif
 @if (Auth::user()->role == 'resepsionis')
 <li class="nav-item mt-3 mb-3">

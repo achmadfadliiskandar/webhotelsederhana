@@ -41,6 +41,7 @@ Route::put('/welcome/datatamu/update/{id}','tambahpembayaran');
 Route::get('/resepsionis.pembayaran','pembayaran');
 // Route::get('resepsionis/datakamar/cari','cari');
 Route::put('resepsionis.payment/{id}','updatepayment');
+Route::get('/user','datauser');
 });
 
 Route::controller(HomeController::class)->group(function(){

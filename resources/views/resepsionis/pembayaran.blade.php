@@ -69,7 +69,7 @@
                 </td>
                 <td>
                         <button class="btn btn-success" type="submit">Tambahkan Pembayaran</button>
-                        <a target="_blank" href="/tamu/laporanbooking/{{$item->id}}" class="btn btn-danger">PDF</a>
+                        <a target="_blank" href="/tamu/laporanbooking/{{$item->kamar_orders_id}}" class="btn btn-danger">PDF</a>
                     </form>
                 </td>
             </tr>

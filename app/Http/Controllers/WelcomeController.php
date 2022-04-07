@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\FasilitasUmum;
 use App\Models\Kamar;
 use App\Models\KamarOrder;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
@@ -148,6 +149,10 @@ class WelcomeController extends Controller
     public function pembayaran(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.pembayaran',compact('kamarorders'));
+    }
+    public function datauser(){
+        $users = User::all();
+        return view('user.index',compact('users'));
     }
     // end
 }
