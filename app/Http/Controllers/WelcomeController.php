@@ -131,7 +131,8 @@ class WelcomeController extends Controller
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.datatamu',compact('kamarorders'));
     }
-    public function tambahpembayaran(Request $request,$id){
+    // khusus resepsionis
+    public function updatepayment(Request $request,$id){
         $tambahpembayaran = KamarOrder::find($id);
         $tambahpembayaran->jumlahdibayar = $request->jumlahdibayar;
         $tambahpembayaran->metodepembayaran = $request->metodepembayaran;
@@ -148,7 +149,5 @@ class WelcomeController extends Controller
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.pembayaran',compact('kamarorders'));
     }
-    public function updatepayment($id){
-        return $id;
-    }
+    // end
 }

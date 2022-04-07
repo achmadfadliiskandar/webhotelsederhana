@@ -43,7 +43,7 @@
                             @method('PUT')
                         @if ($kamarorder->jumlahdibayar == null)
                             {{-- <span class="text-danger">belum di bayar</span> --}}
-                            <input type="number" class="form-control" name="jumlahdibayar">
+                        {{"belum dibayar"}}
                         @else
                         {{number_format($kamarorder->jumlahdibayar,-2,".",".")}}
                         @endif
@@ -95,11 +95,15 @@
                     $hargas += $item->totalharga;
                     @endphp
                     @endforeach
-                    {{number_format($kamarorder->totalharga,-2,".",".")}}
+                    {{number_format($hargas,-2,".",".")}}
                     </td>
                     <td>
                         {{-- <span class="text-danger">belum di bayar</span> --}}
+                    @if ($kamarorder->metodepembayaran == null)
+                        {{"tidak ada"}}
+                    @else
                         {{$kamarorder->metodepembayaran}}
+                    @endif
                     </td>
                     <td>
                         {{$kamarorder->status}}

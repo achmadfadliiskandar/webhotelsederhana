@@ -38,7 +38,7 @@ Route::post('/tamu/insertbooking','insertbooking');
 Route::get('/tamu/laporanbooking/{id}','kamarpdf');
 Route::get('/resepsionis.datatamu','datatamu');
 Route::put('/welcome/datatamu/update/{id}','tambahpembayaran');
-Route::get('resepsionis.pembayaran','pembayaran');
+Route::get('/resepsionis.pembayaran','pembayaran');
 // Route::get('resepsionis/datakamar/cari','cari');
 Route::put('resepsionis.payment/{id}','updatepayment');
 });

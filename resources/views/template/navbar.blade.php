@@ -29,13 +29,54 @@
         </ul>
     </div>
     </div>
-    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-        <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-          <div class="sidenav-toggler-inner">
-            <i class="sidenav-toggler-line"></i>
-            <i class="sidenav-toggler-line"></i>
-            <i class="sidenav-toggler-line"></i>
-          </div>
+    <li class="nav-item d-xl-none ps-4 d-flex align-items-center">
+        {{-- <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav"> --}}
+            <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu Open
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                @if (Auth::user()->role == 'admin')
+                    <li class="nav-item mt-3 mb-3">
+                        <a href="/admin.admin/" class="dropdown-item" style="{{ request()->is('admin.admin') ? 'border: 1px solid #cb0c9f;' : '' }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item mt-3 mb-3">
+                        <a href="/kamar.index/" class="dropdown-item" style="{{ request()->is('kamar.index') ? 'border: 1px solid #32a887;' : '' }}">Kamar</a>
+                    </li>
+                    <li class="nav-item mt-3 mb-3">
+                        <a href="/tipe_kamars" class="dropdown-item" style="{{ request()->is('tipe_kamars') ? 'border: 1px solid #37dedb;' : '' }}">Tipe Kamar</a>
+                    </li>
+                    <li class="nav-item mt-3 mb-3">
+                        <a href="/fasilitasumum" class="dropdown-item" style="{{ request()->is('fasilitasumum') ? 'border: 1px solid #358ca6;' : '' }}">Fasilitas Umum</a>
+                    </li>
+                    <li class="nav-item mt-3 mb-3">
+                        <a href="/saran" class="dropdown-item" style="{{ request()->is('saran') ? 'border: 1px solid #7135a6;' : '' }}">Saran</a>
+                    </li>
+                    <li class="nav-item mt-3 mb-3">
+                        <a href="/fasilitas" class="dropdown-item" style="{{ request()->is('fasilitas') ? 'border: 1px solid #88a635;' : '' }}">Fasilitas</a>
+                    </li>
+                    <li class="nav-item mt-3 mb-3">
+                        <a href="/fasilitas_kamars" class="dropdown-item" style="{{ request()->is('fasilitas_kamars') ? 'border: 1px solid #de8d37;' : '' }}">Fasilitas Kamar</a>
+                    </li>
+                @endif
+                @if (Auth::user()->role == 'resepsionis')
+                <li class="nav-item mt-3 mb-3">
+                    <a href="/resepsionis.resepsionis/" class="dropdown-item" style="{{ request()->is('resepsionis.resepsionis') ? 'border: 1px solid #eaea;' : '' }}">Dashboard</a>
+                </li>
+                <li class="nav-item mt-3 mb-3">
+                    <a href="/resepsionis.datatamu/" class="dropdown-item" style="{{ request()->is('resepsionis.datatamu') ? 'border: 1px solid #fcba03;' : '' }}">Data Tamu</a>
+                </li>
+                <li class="nav-item mt-3 mb-3">
+                    <a href="/resepsionis.pembayaran/" class="dropdown-item" style="{{ request()->is('resepsionis.pembayaran') ? 'border: 1px solid #313e54;' : '' }}">Pembayaran</a>
+                </li>
+                @endif
+                @if (Auth::user()->role == 'tamu')
+                <li class="nav-item">
+                    <a href="/tamu.home/" class="dropdown-item">Dashboard</a>
+                </li>
+                @endif
+            </ul>
+            </div>
         </a>
-      </li>
+    </li>
 </nav>
