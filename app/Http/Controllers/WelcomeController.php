@@ -11,6 +11,7 @@ use App\Models\FasilitasUmum;
 use App\Models\Kamar;
 use App\Models\KamarOrder;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
@@ -155,4 +156,9 @@ class WelcomeController extends Controller
         return view('user.index',compact('users'));
     }
     // end
+    public function cetakpdfresepsionis(){
+        $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
+        $pdf = FacadePdf::loadview('resepsionis.pdfdatatamu',compact('kamarorders'));
+        return $pdf->stream();
+    }
 }

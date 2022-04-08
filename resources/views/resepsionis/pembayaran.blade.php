@@ -12,7 +12,7 @@
     </div>
 @endif
 <div class="container" style="overflow-x:auto">
-<table class="table table-hover table table-striped table table-bordered">
+<table class="table table-hover table table-striped table table-bordered" id="pembayaran">
     <thead>
         <tr>
             <th scope="col">No</th>
@@ -82,3 +82,11 @@
 </table>
 </div>
 @endsection
+
+@push('datatables')
+<script>
+$(document).ready(function() {
+$('#pembayaran').DataTable();
+});
+</script>
+@endpush
