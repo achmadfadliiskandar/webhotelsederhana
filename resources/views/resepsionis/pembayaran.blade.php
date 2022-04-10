@@ -27,10 +27,11 @@
         </thead>
         <tbody>
         @forelse ($kamarorders as $item)
-        <form action="/resepsionis.payment/{{$item->id}}" method="POST">
-            @csrf
-            @method('PUT')
             <tr>
+                <form action="/resepsionis.payment/{{$item->id}}" method="POST">
+                @csrf
+                @method('PUT')
+                
                 <td>{{$loop->iteration}}</td>
                 <td>{{$item->booking_kode}}</td>
                 <td>
@@ -53,7 +54,7 @@
                 </td>
                 <td>
                     <select name="metodepembayaran" class="form-control" id="metodepembayaran">
-                        <option value="" disabled>{{$item->metodepembayaran}}</option>
+                        {{-- <option value="" disabled>{{$item->metodepembayaran}}</option> --}}
                         <option value="cash">Cash</option>
                         <option value="transfer">Transfer</option>
                     </select>
@@ -61,7 +62,7 @@
                 <td>
                     {{-- {{"status belum terkonfirmasi"}} --}}
                     <select name="status" class="form-control" id="metodepembayaran">
-                        <option value="" disabled>{{$item->statuspembayaran}}</option>
+                        {{-- <option value="" disabled>{{$item->statuspembayaran}}</option> --}}
                         <option value="confirmed">Terkonfirmasi</option>
                         <option value="unconfirmed">Tidak Terkonfirmasi</option>
                         <option value="done">Sudah Terkonfirmasi</option>
