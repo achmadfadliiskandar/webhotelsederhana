@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\TipeKamarController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,7 @@ Route::put('/welcome/datatamu/update/{id}','tambahpembayaran');
 Route::get('/resepsionis.pembayaran','pembayaran');
 // Route::get('resepsionis/datakamar/cari','cari');
 Route::put('resepsionis.payment/{id}','updatepayment');
-Route::get('/user','datauser');
+// route
 Route::get('/resepsionis/pdfdatatamu','cetakpdfresepsionis');
 });
 
@@ -50,6 +51,14 @@ Auth::routes();
 Route::get('admin.admin','index')->name('admin')->middleware('checkRole:admin');
 Route::get('resepsionis.resepsionis','index')->name('resepsionis')->middleware('checkRole:resepsionis');
 Route::get('tamu.home', 'index')->name('home')->middleware('checkRole:tamu');
+});
+
+Route::middleware('auth','checkRole:admin')->group(function(){
+Route::controller(UserController::class)->group(function(){
+    Route::get('/user','index');
+    Route::get('/user.create','create');
+    Route::post('/user.store','store');
+});
 });
 
 Route::middleware('auth','checkRole:admin')->group(function(){

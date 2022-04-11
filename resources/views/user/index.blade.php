@@ -6,6 +6,12 @@
 
 @section('content')
 <h2>Data User</h2>
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+<a href="/user.create" class="my-3 btn btn-primary">Tambah User</a>
 <div class="container">
 <table class="table table-bordered table table-hover table table-striped">
         <thead>

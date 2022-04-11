@@ -151,10 +151,7 @@ class WelcomeController extends Controller
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.pembayaran',compact('kamarorders'));
     }
-    public function datauser(){
-        $users = User::all();
-        return view('user.index',compact('users'));
-    }
+    
     // end
     public function cetakpdfresepsionis(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
