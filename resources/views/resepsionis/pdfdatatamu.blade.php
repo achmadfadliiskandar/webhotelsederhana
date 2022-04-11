@@ -8,7 +8,7 @@
 	<style type="text/css">
 		table tr td,
 		table tr th{
-			font-size: 9pt;
+			font-size: 5pt;
 		}
 	</style>
     <table class="table table-bordered table table-hover table table-striped" id="example">
@@ -36,9 +36,6 @@
             <td>{{$kamarorder->booking_kode}}</td>
             <td>{{$kamarorder->user->name}}</td>
             <td>
-                <form action="/welcome/datatamu/update/{{$kamarorder->id}}" method="POST">
-                    @csrf
-                    @method('PUT')
                 @if ($kamarorder->jumlahdibayar == null)
                     {{-- <span class="text-danger">belum di bayar</span> --}}
                 {{"belum dibayar"}}
@@ -51,37 +48,27 @@
             </td>
             <td>
                 @foreach ($kamarorder->detailkamarorder as $item)
-                    <ol>
-                        <li type="number">{{$item->tanggal_checkin}}</li>
-                    </ol>
+                <p>{{$item->tanggal_checkin}}</p>
                 @endforeach
             </td>
             <td>
                 @foreach ($kamarorder->detailkamarorder as $item)
-                <ol>
-                    <li>{{$item->tanggal_checkout}}</li>
-                </ol>
+                <p>{{$item->tanggal_checkout}}</p>
             @endforeach
             </td>
             <td>
                 @foreach ($kamarorder->detailkamarorder as $item)
-                <ol>
-                    <li>{{$item->kamars->tipe_kamar->tipe_kamar}}</li>
-                </ol>
+                <p>{{$item->kamars->tipe_kamar->tipe_kamar}}</p>
             @endforeach
             </td>
             <td>
                 @foreach ($kamarorder->detailkamarorder as $item)
-                <ol>
-                    <li>{{number_format($item->kamars->hargakamarpermalam,-2,".",".")}}</li>
-                </ol>
+                <p>{{number_format($item->kamars->hargakamarpermalam,-2,".",".")}}</p>
             @endforeach
             </td>
             <td>
                 @foreach ($kamarorder->detailkamarorder as $item)
-                <ol>
-                    {{$item->lama_menginap}}</li>
-                </ol>
+                    <p>{{$item->lama_menginap}}</p>
             @endforeach
             </td>
             <td>

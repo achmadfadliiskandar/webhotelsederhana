@@ -9,6 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="icon" href="{{asset('gambarhotel/IndigoShine.jpg')}}">
 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>IndigoShine-Hotel</title>
     </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
@@ -39,6 +42,10 @@
     <!-- about -->
     @include('templatelandingpage.about')
     <!-- end about -->
+
+    <a href="#" class="btn btn-primary" id="buttontop" onclick="buttontop()">
+        <i class="fa fa-arrow-up"></i>
+    </a>
 
     <!-- fasilitas -->
     <section class="facility" id="facility">
@@ -242,6 +249,9 @@
 
 <!-- css -->
 <style>
+    html{
+        scroll-behavior: smooth;
+    }
     .navbar{
         background-color: #4b0082;
     }
@@ -254,6 +264,21 @@
     .about{
         padding-top: 3.5em;
         padding-bottom: 3.5em;
+    }
+    #buttontop{
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    scroll-behavior: smooth;
     }
     .facility{
         padding-top: 3.5em;
@@ -291,3 +316,21 @@
     }
 </style>
 <!-- end css -->
+<!-- js -->
+<script>
+    // alert("test")
+    var mybutton = document.getElementById("buttontop");
+    window.onscroll = function(){scrollfunction()};
+    function scrollfunction(){
+        if (document.body.scrolltop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function topFunction(){
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- end js -->
