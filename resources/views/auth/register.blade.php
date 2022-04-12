@@ -68,7 +68,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 d-flex flex-column mx-auto">
             <div class="card card-plain mt-8">
             <div class="card-header pb-0 text-left bg-transparent">
-                <h3 class="font-weight-bolder text-info text-gradient">Register</h3>
+                <h3 class="font-weight-bolder" style="color: #4b0082">Register</h3>
                 <p class="mb-0">Please Register your account</p>
             </div>
             <div class="card-body">
@@ -127,7 +127,7 @@
 
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" style="background-color:  #4b0082;">
                                 {{ __('Register') }}
                             </button>
                         </div>
@@ -137,7 +137,7 @@
             <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 <p class="mb-4 text-sm mx-auto">
                 Don't have an account?
-                <a href="javascript:;" class="text-info text-gradient font-weight-bold">Sign up</a>
+                <a href="javascript:;" class="text-primary text-gradient font-weight-bold">Sign up</a>
                 </p>
             </div>
             </div>
