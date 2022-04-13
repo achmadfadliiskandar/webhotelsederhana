@@ -72,6 +72,11 @@
                         <button class="btn btn-success" type="submit">Tambahkan Pembayaran</button>
                         <a target="_blank" href="/tamu/laporanbooking/{{$item->kamar_orders_id}}" class="btn btn-danger">PDF</a>
                     </form>
+                    <form action="/resepsionis/cancelpayment/{{$item->kamar_orders_id}}" class="d-inline-block" method="POST" onsubmit="return confirm('yakin ingin membatalkan pembayaran??')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-warning">Cancel Payment</button>
+                    </form>
                 </td>
             </tr>
         @empty

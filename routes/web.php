@@ -44,6 +44,8 @@ Route::get('/resepsionis.pembayaran','pembayaran');
 Route::put('resepsionis.payment/{id}','updatepayment');
 // route
 Route::get('/resepsionis/pdfdatatamu','cetakpdfresepsionis');
+// cancel payment
+Route::delete('/resepsionis/cancelpayment/{id}','cancelpayment');
 });
 
 Route::controller(HomeController::class)->group(function(){

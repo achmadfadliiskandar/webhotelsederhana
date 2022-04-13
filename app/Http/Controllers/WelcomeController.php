@@ -158,4 +158,12 @@ class WelcomeController extends Controller
         $pdf = FacadePdf::loadview('resepsionis.pdfdatatamu',compact('kamarorders'));
         return $pdf->stream();
     }
+    // cancel payment
+    public function cancelpayment($id){
+        $kamarorder = KamarOrder::with('detailkamarorder')->where('id',$id)->first();
+        $kamarorders = DetailKamarOrder::where('kamar_orders_id',$id);
+        $kamarorder->delete();
+        $kamarorders->delete();
+        return redirect()->back()->with('status','Pembayaran Berhasil Di Cancel');
+    }
 }
