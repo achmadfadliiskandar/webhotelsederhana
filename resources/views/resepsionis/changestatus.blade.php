@@ -14,7 +14,7 @@
     <div class="alert alert-info text-white">Halaman ini bertujuan untuk mengubah status kamar baik itu yang di batalkan ataupun tamu telah selesai menginap di hotel ini</div>
     <div class="container">
         <div style="overflow-x: auto;">
-            <table class="table table-bordered table table-striped table table-hover text-center">
+            <table class="table table-bordered table table-striped table table-hover text-center" id="example">
                 <thead>
                 <tr>
                     <th scope="col">No</th>
@@ -62,3 +62,11 @@
         </div>
     </div>
 @endsection
+
+@push('datatables')
+<script>
+$(document).ready(function() {
+$('#example').DataTable();
+});
+</script>
+@endpush
