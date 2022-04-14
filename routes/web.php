@@ -28,8 +28,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::controller(WelcomeController::class)->group(function(){
+    // halaman utama
 Route::get('/','welcome');
+// login khusus admin
 Route::get('admin.login','loginadmin')->middleware('guest');
+// login khusus resepsionis
 Route::get('resepsionis.login','loginresepsionis')->middleware('guest');
 Route::get('tamu/detailroom/{id}','detailroom');
 Route::post('/welcome/addorder','addorder');
@@ -40,12 +43,16 @@ Route::get('/tamu/laporanbooking/{id}','kamarpdf');
 Route::get('/resepsionis.datatamu','datatamu');
 Route::put('/welcome/datatamu/update/{id}','tambahpembayaran');
 Route::get('/resepsionis.pembayaran','pembayaran');
-// Route::get('resepsionis/datakamar/cari','cari');
+// mengubah pembayaran tamu
 Route::put('resepsionis.payment/{id}','updatepayment');
 // route
 Route::get('/resepsionis/pdfdatatamu','cetakpdfresepsionis');
 // cancel payment
 Route::delete('/resepsionis/cancelpayment/{id}','cancelpayment');
+// halaman mengubah status kamar
+Route::get('/resepsionis.changestatus','changestatus');
+// melakukan proses mengubah status kamar
+Route::patch('/resepsionis/changesroom/{id}','changesroom');
 });
 
 Route::controller(HomeController::class)->group(function(){

@@ -46,6 +46,9 @@
 <li class="nav-item mt-3 mb-3">
     <a href="/resepsionis.pembayaran/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.pembayaran') ? 'border: 1px solid #313e54;' : '' }}">Pembayaran</a>
 </li>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.changestatus/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.changestatus') ? 'border: 1px solid #eb4034;' : '' }}">Kamar</a>
+</li>
 @endif
 @if (Auth::user()->role == 'tamu')
 <li class="nav-item">

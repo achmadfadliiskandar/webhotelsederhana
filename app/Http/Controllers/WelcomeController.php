@@ -166,4 +166,16 @@ class WelcomeController extends Controller
         $kamarorders->delete();
         return redirect()->back()->with('status','Pembayaran Berhasil Di Cancel');
     }
+    // changestatus(mengubah status pada kamar)
+    public function changestatus(){
+        $kamars = Kamar::with('tipe_kamar')->get();
+        return view('resepsionis.changestatus',compact('kamars'));
+    }
+    // query ubah status kamar
+    public function changesroom(Request $request,$id){
+        $kamar = Kamar::find($id);
+        $kamar->status = $request->status;
+        $kamar->save();
+        return redirect('resepsionis.changestatus')->with('status','Kamar Berhasil Di ubah');
+    }
 }
