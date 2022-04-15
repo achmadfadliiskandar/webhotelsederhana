@@ -5,13 +5,16 @@ git pull origin master
 <<<<<<< HEAD
 CARA CLONE REPOSITORY INI
 git clone : git clone : //file yang mau di clone
-
-<!-- SEKIAN TEMAN2 -->
-=======
+<!-- cara clone -->
 - composer install / composer update
 - copy .env-example / .env
 - php artisan migrate
 - php artisan key:generate
 - php artisan serve
 - selesai
->>>>>>> 75ddb817d48d68f50b31fa5b09bc1d3d76c8a339
+
+<!-- cara pull -->
+git pull origin master
+
+<!-- jika di pull tidak bisa -->
+git stash
