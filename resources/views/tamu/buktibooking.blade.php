@@ -17,6 +17,7 @@
 {{-- @include('templatelandingpage.navbar') --}}
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
+        <img src="{{asset('gambarhotel/IndigoShine.jpg')}}" width="30" class="m-2" height="30" class="d-inline-block align-top" alt="">
         <a class="navbar-brand" href="/">IndigoShine</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,6 +44,11 @@
                 <li class="nav-item">
                     @if (Auth::user()->role == 'tamu')
                     <a class="nav-link" href="/tamu.home">Dashboard Tamu</a>
+                    @endif
+                </li>
+                <li class="nav-item">
+                    @if (Auth::user()->role == 'tamu')
+                        <a href="/auth.passwords.change-password" class="nav-link">Ubah Password</a>
                     @endif
                 </li>
                 <li class="nav-item">

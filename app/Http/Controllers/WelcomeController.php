@@ -15,6 +15,8 @@ use Barryvdh\DomPDF\Facade;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class WelcomeController extends Controller
 {
@@ -182,5 +184,25 @@ class WelcomeController extends Controller
         $kamar->status = $request->status;
         $kamar->save();
         return redirect('resepsionis.changestatus')->with('status','Kamar Berhasil Di ubah');
+    }
+    // ubah password (optional/pilihan)
+    public function ubahpassword(){
+        return view('auth.passwords.change-password');
+    }
+    public function changepassword(Request $request){
+        $request->validate([
+            'password_lama' => 'required',
+            'password_baru' => 'required',
+        ]);
+        #perbandingan password baru dan lama
+
+        if (!Hash::check($request->password_lama, auth()->user()->password)) {
+            return redirect()->back()->with("error","password baru dan password lama tidak sama");
+        }
+        #mengupdate password baru
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->password_baru)
+        ]);
+        return redirect()->back()->with("success","password berhasil di ubah");
     }
 }

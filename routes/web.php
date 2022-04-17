@@ -53,6 +53,9 @@ Route::delete('/resepsionis/cancelpayment/{id}','cancelpayment');
 Route::get('/resepsionis.changestatus','changestatus');
 // melakukan proses mengubah status kamar
 Route::patch('/resepsionis/changesroom/{id}','changesroom');
+// ubah password 
+Route::get('/auth.passwords.change-password','ubahpassword')->middleware('auth');
+Route::post('/update/password','changepassword')->middleware('auth');
 });
 
 Route::controller(HomeController::class)->group(function(){

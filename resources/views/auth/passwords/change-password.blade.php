@@ -61,91 +61,53 @@
     </nav>
     <!-- end navbar -->
 
+    <!-- ubah password -->
     <div class="container mt-5 mb-5 pt-5 pb-5">
-        <h1 class="text-center">Dashboard</h1>
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
+        <h2 class="text-center pt-2 pb-3">Silahkan Ubah Password di sini</h2>
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-header">Silahkan Ganti Password di halaman ini</div>
+                    <form action="/update/password" method="post">
+                    @csrf
+                    <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @elseif (session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <div class="mb-3">
+                            <label for="password_lama" class="form-label">Password Lama</label>
+                            <input type="password" name="password_lama" class="form-control  @error('password_lama') is-invalid @enderror">
+                            @error('password_lama')
+                                <span class="text-danger">Password lama harus di isi</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="password_baru" class="form-label">Password Baru</label>
+                            <input type="password" name="password_baru" class="form-control  @error('password_baru') is-invalid @enderror">
+                            @error('password_baru')
+                                <span class="text-danger">Password baru harus di isi</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="konfirmasi_password_baru" class="form-label">Konfirmasi Password Baru</label>
+                            <input name="konfirmasi_password_baru" type="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success w-100">Ubah Password</button>
+                    </div>
+                    </form>
+                </div>
             </div>
-        @endif
-        <h2>Welcome User : {{Auth::user()->name}}</h2>
-        <h4>Email : {{Auth::user()->email}}</h4>
-        <hr>
-        <h2 class="text-center py-3">Pesanan Kamar Anda </h2>
-        <div class="container-fluid">
-            <div style="overflow-x: auto;">
-                <table style="width: 100%;" class="table table-bordered table table-striped table table-hover">
-                    <thead>
-                    <tr>
-                        {{-- <th scope="col">Kode Booking</th> --}}
-                        <th scope="col">Kode Kamar</th>
-                        <th scope="col">Detail Kamar</th>
-                        <th scope="col">Tanggal Checkin</th>
-                        <th scope="col">Tanggal Checkout</th>
-                        {{-- <th scope="col">Laporan PDF</th> --}}
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($bookings as $no => $booking)
-                        {{-- first tabel --}}
-                        <tr>
-                            {{-- <td>{{$booking->kodebooking}}</td> --}}
-                            <td>{{$booking->kamar->nokamar}}</td>
-                            <td>{{$booking->kamar->tipe_kamar->tipe_kamar}}</td>
-                            <td>{{$booking->rencanacheckin}}</td>
-                            <td>{{$booking->rencanacheckout}}</td>
-                            <td>
-                                @if ($booking->deleted_at)
-                                    <button class="btn btn-danger" disabled>Batalkan</button>
-                                @else
-                                
-                                {{-- bisa --}}
-                                <form action="/welcome/removeorder/{{$booking->id}}" onsubmit="return confirm('apakah yakin ingin membatalkan pesanan kamar ini??');" class="d-inline-block" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Batalkan</button>
-                                </form>
-
-                                @endif
-                            </td>
-                        </tr>
-                        {{-- end tabel --}}
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text-danger text-center">Anda Belum Memesan Kamar</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-                <hr>
-                <h2 class="text-center">Bukti Pembayaran</h2>
-                <p class="text-center">bukti yang digunakan untuk melakukan pembayaran saat memesan kamar</p>
-                <table class="table table-bordered table table-striped table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Kode Booking</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($kamarorders as $kamarorder)
-                        <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$kamarorder->booking_kode}}</td>
-                        <td>
-                            <a href="/tamu/laporanbooking/{{$kamarorder->id}}" target="_blank" class="btn btn-info">Laporan Pdf</a>
-                        </td>
-                        </tr>
-                    @empty
-                        <td class="text-danger text-center" colspan="3">Anda Belum Mempunyai Bukti Ke Hotel</td>
-                    @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
+    </div>
+    <!-- end ubah password -->
 
     <!-- footer -->
     @include('templatelandingpage.footer')
