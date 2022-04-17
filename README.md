@@ -18,3 +18,4 @@ git pull origin master
 
 <!-- jika di pull tidak bisa -->
 git stash
+lalu coba git pull lagi

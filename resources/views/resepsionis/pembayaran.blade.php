@@ -55,17 +55,17 @@
                 <td>
                     <select name="metodepembayaran" class="form-control" id="metodepembayaran">
                         {{-- <option value="" disabled>{{$item->metodepembayaran}}</option> --}}
-                        <option value="cash">Cash</option>
-                        <option value="transfer">Transfer</option>
+                        <option value="cash" @if($item->metodepembayaran == "cash") selected @endif>Cash</option>
+                        <option value="transfer" @if($item->metodepembayaran == "transfer") selected @endif>Transfer</option>
                     </select>
                 </td>
                 <td>
                     {{-- {{"status belum terkonfirmasi"}} --}}
                     <select name="status" class="form-control" id="metodepembayaran">
-                        {{-- <option value="" disabled>{{$item->statuspembayaran}}</option> --}}
-                        <option value="confirmed">Terkonfirmasi</option>
-                        <option value="unconfirmed">Tidak Terkonfirmasi</option>
-                        <option value="done">Sudah Terkonfirmasi</option>
+                        {{-- <option value="">pilih pembayaran</option> --}}
+                        <option value="confirmed" @if($item->status == "confirmed") selected @endif>Terkonfirmasi</option>
+                        <option value="unconfirmed" @if($item->status == "unconfirmed") selected @endif>Tidak Terkonfirmasi</option>
+                        <option value="done" @if($item->status == "done") selected @endif>Sudah Terkonfirmasi</option>
                     </select>
                 </td>
                 <td>

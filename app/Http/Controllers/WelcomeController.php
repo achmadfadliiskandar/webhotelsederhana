@@ -123,8 +123,13 @@ class WelcomeController extends Controller
     }
     public function kamarpdf($id){
         $kamarorder = KamarOrder::with('detailkamarorder')->where('id',$id)->first();
+        if ($kamarorder == NULL) {
+            return abort(404);
+        } else {
         $pdf = FacadePdf::loadview('tamu.laporanbooking',compact('kamarorder'));
         return $pdf->stream();
+        }
+        
         // return view('tamu.laporanbooking',compact('pdf'));
     }
 
