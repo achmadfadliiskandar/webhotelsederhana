@@ -11,7 +11,7 @@
         {{session('status')}}
     </div>
     @endif
-    <div class="alert alert-info text-white">Halaman ini bertujuan untuk mengubah status kamar baik itu yang di batalkan ataupun tamu telah selesai menginap di hotel ini</div>
+    <div class="alert alert-info text-white">Halaman ini bertujuan untuk mengubah status Ketika Tamu Sudah selesai Menginap Di Hotel</div>
     <div class="container">
         <div style="overflow-x: auto;">
             <table class="table table-bordered table table-striped table table-hover text-center" id="example">

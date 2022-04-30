@@ -64,10 +64,16 @@
                     <a href="/resepsionis.resepsionis/" class="dropdown-item" style="{{ request()->is('resepsionis.resepsionis') ? 'border: 1px solid #eaea;' : '' }}">Dashboard</a>
                 </li>
                 <li class="nav-item mt-3 mb-3">
-                    <a href="/resepsionis.datatamu/" class="dropdown-item" style="{{ request()->is('resepsionis.datatamu') ? 'border: 1px solid #fcba03;' : '' }}">Data Tamu</a>
+                    <a href="/resepsionis.datatamu/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.datatamu') ? 'border: 1px solid #fcba03;' : '' }}">Data Tamu Order</a>
+                </li>
+                <li class="nav-item mt-3 mb-3">
+                    <a href="/resepsionis.cancel/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.cancel') ? 'border: 1px solid #32a852;' : '' }}">Data Tamu Cancel</a>
                 </li>
                 <li class="nav-item mt-3 mb-3">
                     <a href="/resepsionis.pembayaran/" class="dropdown-item" style="{{ request()->is('resepsionis.pembayaran') ? 'border: 1px solid #313e54;' : '' }}">Pembayaran</a>
+                </li>
+                <li class="nav-item mt-3 mb-3">
+                    <a href="/resepsionis.changestatus/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.changestatus') ? 'border: 1px solid #eb4034;' : '' }}">Kamar</a>
                 </li>
                 @endif
                 @if (Auth::user()->role == 'tamu')

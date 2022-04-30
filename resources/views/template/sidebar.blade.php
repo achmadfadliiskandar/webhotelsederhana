@@ -41,7 +41,10 @@
     <a href="/resepsionis.resepsionis/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.resepsionis') ? 'border: 1px solid #eaea;' : '' }}">Dashboard</a>
 </li>
 <li class="nav-item mt-3 mb-3">
-    <a href="/resepsionis.datatamu/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.datatamu') ? 'border: 1px solid #fcba03;' : '' }}">Data Tamu</a>
+    <a href="/resepsionis.datatamu/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.datatamu') ? 'border: 1px solid #fcba03;' : '' }}">Data Tamu Order</a>
+</li>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.cancel/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.cancel') ? 'border: 1px solid #32a852;' : '' }}">Data Tamu Cancel</a>
 </li>
 <li class="nav-item mt-3 mb-3">
     <a href="/resepsionis.pembayaran/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.pembayaran') ? 'border: 1px solid #313e54;' : '' }}">Pembayaran</a>

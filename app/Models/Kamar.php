@@ -24,6 +24,9 @@ class Kamar extends Model
     public function detailkamarorder(){
         return $this->hasMany(DetailKamarOrder::class);
     }
+    public function detailkamarcancel(){
+        return $this->hasMany(DetailKamarCancel::class,'kamars_id');
+    }
     public function bookings(){
         return $this->hasOne(Booking::class);
     }

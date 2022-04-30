@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\DetailKamarCancel;
 use App\Models\DetailKamarOrder;
 use App\Models\Fasilitas;
 use App\Services\LogActivitiesServices\MainLogActivitiesServices;
@@ -141,6 +142,11 @@ class WelcomeController extends Controller
         return view('resepsionis.datatamu',compact('kamarorders'));
     }
     // khusus resepsionis
+    public function cancel(){
+        $kamarcancels = DetailKamarCancel::with('kamars')->latest()->paginate();
+        return view('resepsionis.cancel',compact('kamarcancels'));
+    }
+    // khusus resepsionis
     public function updatepayment(Request $request,$id){
         $tambahpembayaran = KamarOrder::find($id);
         $tambahpembayaran->jumlahdibayar = $request->jumlahdibayar;
@@ -163,6 +169,12 @@ class WelcomeController extends Controller
     public function cetakpdfresepsionis(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         $pdf = FacadePdf::loadview('resepsionis.pdfdatatamu',compact('kamarorders'));
+        return $pdf->stream();
+    }
+    // cetak pdf cancel
+    public function cetakcancel(){
+        $kamarcancels = DetailKamarCancel::with('kamars')->latest()->paginate();
+        $pdf = FacadePdf::loadview('resepsionis.pdfcancel',compact('kamarcancels'));
         return $pdf->stream();
     }
     // cancel payment

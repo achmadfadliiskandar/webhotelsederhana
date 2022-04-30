@@ -23,5 +23,8 @@ class Booking extends Model
     public function detailkamarorder(){
         return $this->hasMany(DetailKamarOrder::class);
     }
+    public function detailkamarcancel(){
+        return $this->hasMany(DetailKamarCancel::class);
+    }
     protected $fillable = ['user_id','kamar_id','kodebooking','jumlah_penginap','tanggal_rencanacheckin','tanggal_rencanacheckout','totalharga','lama_menginap','status'];
 }

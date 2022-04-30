@@ -29,6 +29,9 @@ class User extends Authenticatable
     public function kamarorder(){
         return $this->hasMany(KamarOrder::class);
     }
+    public function detailkamarcancel(){
+        return $this->hasMany(DetailKamarCancel::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

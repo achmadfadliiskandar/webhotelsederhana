@@ -41,12 +41,15 @@ Route::get('/tamu/buktibooking','buktibooking');
 Route::post('/tamu/insertbooking','insertbooking');
 Route::get('/tamu/laporanbooking/{id}','kamarpdf');
 Route::get('/resepsionis.datatamu','datatamu');
+Route::get('/resepsionis.cancel','cancel');
 Route::put('/welcome/datatamu/update/{id}','tambahpembayaran');
 Route::get('/resepsionis.pembayaran','pembayaran');
 // mengubah pembayaran tamu
 Route::put('resepsionis.payment/{id}','updatepayment');
-// route
+// pdf data tamu yang order
 Route::get('/resepsionis/pdfdatatamu','cetakpdfresepsionis');
+// pdf data tamu yang batal
+Route::get('/resepsionis/pdfcancel','cetakcancel');
 // cancel payment
 Route::delete('/resepsionis/cancelpayment/{id}','cancelpayment');
 // halaman mengubah status kamar
