@@ -7,7 +7,7 @@
 @section('content')
     <h2>Data Cancel</h2>
     <div class="alert alert-danger">Halaman Ini Bertujuan untuk mengetahui user yang Tidak jadi memesan kamar / tidak datang ke hotel</div>
-    <a href="/resepsionis/pdfcancel" target="_blank" class="my-3 btn btn-info">Laporan PDF</a>
+    <a href="/resepsionis/pdfcancel" target="_blank" class="my-3 btn btn-danger">Laporan PDF</a>
     @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
