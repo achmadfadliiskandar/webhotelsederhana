@@ -74,7 +74,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="rencanacheckin" class="form-label">Tanggal Checkin</label>
-                        <input type="date" class="form-control @error('rencanacheckin') is-invalid @enderror" id="rencanacheckin" name="rencanacheckin" value="{{old('rencanacheckin')}}">
+                        <input type="date" class="form-control @error('rencanacheckin') is-invalid @enderror" id="rencanacheckin" name="rencanacheckin" value="{{old('rencanacheckin')}}" onchange="lamaMenginap();">
                         @error('rencanacheckin')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -88,7 +88,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="rencanacheckout" class="form-label">Tanggal Checkout</label>
-                        <input type="date" class="form-control @error('rencanacheckout') is-invalid @enderror" id="rencanacheckout" name="rencanacheckout" value="{{old('rencanacheckout')}}">
+                        <input type="date" class="form-control @error('rencanacheckout') is-invalid @enderror" id="rencanacheckout" name="rencanacheckout" value="{{old('rencanacheckout')}}" onchange="lamaMenginap();">
                         @error('rencanacheckout')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -98,9 +98,9 @@
                         <input type="number" class="form-control" value="{{$kamars->hargakamarpermalam}}" readonly>
                     </div>
                     <label for="lama_menginap" class="form-label">Lama Menginap</label>
-                    <div class="input-group mb-3">
+                    <div class="mb-3">
                         <input type="number" readonly class="form-control @error('lama_menginap') is-invalid @enderror" id="lama_menginap" name="lama_menginap" value="{{old('lama_menginap')}}">
-                        <button class="btn btn-outline-secondary" type="button" onclick="lamaMenginap();">klik untuk mengetahui lama menginap anda</button>
+                        {{-- <button class="btn btn-outline-secondary" type="button" onclick="lamaMenginap();">klik untuk mengetahui lama menginap anda</button> --}}
                         @error('lama_menginap')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
