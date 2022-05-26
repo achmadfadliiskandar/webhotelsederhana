@@ -151,6 +151,7 @@
                     </div>
                 </div>
                 @endforeach
+                <div class="alert alert-danger" id="error" style="display: none;">Pencarian Tidak ada</div>
                 </div>
         </div>
     </section>
@@ -337,18 +338,17 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
-    $(document).ready(function (){
-        $("#pencarian").on("keyup",function(){
-            var value = $(this).val().toLowerCase();
-
-            $("#objekpencarian h5").each(function () {
-                if($(this).text().toLowerCase().indexOf(value) > -1){
-                    $(this).siblings("h6").css("background-color","yellow").show();
-                }else{
-                    $(this).siblings("h6").hide();
-                }
-            });
+    $(document).ready(function() {
+        $("#pencarian").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        var toggle = false;
+        $("#objekpencarian h5").each(function() {
+        var toggle = $(this).text().toLowerCase().indexOf(value) > -1;
+        console.log($(this).text().toLowerCase().indexOf(value))
+        $(this).closest('#objekpencarian').toggle(toggle);
+        $('#error').toggle(!toggle);
         });
     });
+});
 </script>
 <!-- end js -->
