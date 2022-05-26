@@ -133,16 +133,20 @@
     <section class="room bg-light" id="room">
         <div class="container">
             <h2 class="text-center">Room</h2>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="pencarian" placeholder="Kata Kunci Kode Kamar" aria-label="Recipient's username" aria-describedby="basic-addon2" title="Type in a name">
+                <span class="input-group-text" id="basic-addon2">Cari Kamar</span>
+            </div>
             <div class="row">
                 @foreach($kamars as $kamar)
                 <div class="col-sm-4 mb-3 mt-3">
-                    <div class="card" style="width: 100%;">
+                    <div class="card" style="width: 100%;" id="objekpencarian">
                         <img src="{{asset('image/'.$kamar->image)}}" class="card-img-top" style="height: 200px;" alt="gambar kosong">
                         <div class="card-body">
                         <h5 class="card-title">Kode Kamar : {{$kamar->nokamar}}</h5>
                         <h6 class="card-subtitle">Tipe Kamar : {{$kamar->tipe_kamar->tipe_kamar}}</h6>
                         {{-- <a href="/show-post/{{$post->id}}/{{$post->slug}}" class="btn btn-primary">Show More</a> --}}
-                        <a href="tamu/detailroom/{{$kamar->id}}" class="btn btn-primary my-3 w-100">Pesan Kamar</a>
+                        <a href="/tamu/detailroom/{{$kamar->id}}" class="btn btn-primary my-3 w-100">Pesan Kamar</a>
                         </div>
                     </div>
                 </div>
@@ -317,6 +321,7 @@
 </style>
 <!-- end css -->
 <!-- js -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
     // alert("test")
     var mybutton = document.getElementById("buttontop");
@@ -332,5 +337,18 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
+    $(document).ready(function (){
+        $("#pencarian").on("keyup",function(){
+            var value = $(this).val().toLowerCase();
+
+            $("#objekpencarian h5").each(function () {
+                if($(this).text().toLowerCase().indexOf(value) > -1){
+                    $(this).siblings("h6").css("background-color","yellow").show();
+                }else{
+                    $(this).siblings("h6").hide();
+                }
+            });
+        });
+    });
 </script>
 <!-- end js -->
