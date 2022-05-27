@@ -26,6 +26,9 @@
         <li class="nav-item">
             <a class="nav-link" href="#saran">Contact</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/guestorder">Pemesanan</a>
+        </li>
         @guest
         <li class="nav-item">
             <a class="nav-link" href="/login/">Login</a>

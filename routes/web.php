@@ -1,6 +1,6 @@
 <?php
 
-// use App\Http\Controllers\BookingController;
+use App\Http\Controllers\GuestBookingController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FasilitasKamarController;
 use App\Http\Controllers\FasilitasUmumController;
@@ -131,4 +131,8 @@ Route::get('fasilitas_kamars','index');
 // Route::get('fasilitas_kamars/create','create');
 // Route::post('fasilitas_kamars/store','store');
 });
+});
+
+Route::controller(GuestBookingController::class)->group(function () {
+    Route::get('/guestorder', 'index')->middleware('guest');
 });
