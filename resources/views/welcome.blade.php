@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="alert alert-danger" id="error" style="display: none;">Pencarian Tidak ada</div>
+                {{-- <div class="alert alert-danger" id="error" style="display: none;">Pencarian Tidak ada</div> --}}
                 </div>
         </div>
     </section>
@@ -341,12 +341,12 @@
     $(document).ready(function() {
         $("#pencarian").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        var toggle = false;
+        // var toggle = false;
         $("#objekpencarian h5").each(function() {
         var toggle = $(this).text().toLowerCase().indexOf(value) > -1;
-        console.log($(this).text().toLowerCase().indexOf(value))
+        // console.log($(this).text().toLowerCase().indexOf(value))
         $(this).closest('#objekpencarian').toggle(toggle);
-        $('#error').toggle(!toggle);
+        // $('#error').toggle(!toggle);
         });
     });
 });
