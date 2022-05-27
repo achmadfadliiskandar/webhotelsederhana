@@ -135,19 +135,29 @@
                 <h2 class="text-center">Silahkan Pesan Kamar di bawah ini</h2>
                 @if (empty(Auth::user()->name))
                 @if ($kamars->status == 'tersedia')
-                <form>
+                <form action="/guest/store" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-md-4">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama">
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama">
+                            @error('nama')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email">
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="nomortelpon">No Telpon</label>
-                            <input type="text" class="form-control" id="nomortelpon" name="nomortelpon">
+                            <input type="number" class="form-control @error('nomortelpon') is-invalid @enderror" id="nomortelpon" name="nomortelpon">
+                            @error('nomortelpon')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3">

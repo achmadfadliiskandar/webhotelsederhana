@@ -135,4 +135,5 @@ Route::get('fasilitas_kamars','index');
 
 Route::controller(GuestBookingController::class)->group(function () {
     Route::get('/guestorder', 'index')->middleware('guest');
+    Route::post('/guest/store','store')->middleware('guest');
 });
