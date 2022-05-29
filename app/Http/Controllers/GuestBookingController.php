@@ -17,6 +17,7 @@ class GuestBookingController extends Controller
             'nama' => 'required',
             'nomortelpon' =>'required',
             'email' =>'required|email',
+            'kodebooking' => 'required',
             'jumlah_penginap' => 'required|numeric',
             'rencanacheckin' => 'required',
             'rencanacheckout' => 'required',
@@ -33,7 +34,7 @@ class GuestBookingController extends Controller
         $booking->totalharga = $booking->kamar->hargakamarpermalam * $request->lama_menginap - $request->dp_dibayar;
         $booking->lama_menginap = $request->lama_menginap;
         $booking->dp_dibayar = $request->dp_dibayar;
-        // $order->kodebooking = mt_rand(100,5000);
+        $booking->kodebooking = $request->kodebooking;
         // untuk membuat pesan tanggal mulai dari sekarang atau hari besok
         if ($booking->rencanacheckin < (date("Y-m-d"))) {
             // dd("anda Tidak boleh");

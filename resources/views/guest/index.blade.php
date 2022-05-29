@@ -105,7 +105,7 @@
         </div>
         @endif
         {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
-        <div class="alert alert-success">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
+        <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
         <div style="overflow-x:auto">
             <table id="example" class="table table-striped table table-hover table table-bordered" style="width:100%">
                 <thead>
@@ -133,11 +133,12 @@
                             <td>{{$guest->email}}</td>
                             <td>{{$guest->kamar->tipe_kamar->tipe_kamar}}</td>
                             <td>
-                                <form action="" method="post" class="d-inline-block">
+                                {{-- <form action="" method="post" class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Batalkan</button>
-                                </form>
+                                </form> --}}
+                                
                             </td>
                         @empty
                             <td colspan="8" class="text-danger text-center text-capitalize">tidak ada data</td>
@@ -192,10 +193,12 @@
         background-size: 100% 100%;
     }
     .footer{
+        margin-top: 30px;
+        margin-bottom: 30px;
         height: 100px;
         background-color: #4b0082;
         position: absolute;
-        bottom: 0;
+        /* bottom: 0; */
         left: 0;
         right: 0;
         /* min-height: calc(58vh - 95px);  */
@@ -215,5 +218,3 @@
 <!-- js -->
 <!-- end js -->
 
-<!-- datatabels -->
-<!-- end datatables -->

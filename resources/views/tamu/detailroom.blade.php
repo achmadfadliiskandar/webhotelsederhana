@@ -172,7 +172,7 @@
                         <div class="mb-3">
                             <label for="kodebooking">Kode Booking</label>
                             <div class="input-group">
-                                <input type="text" class="form-control @error('kodebooking') is-invalid @enderror" name="kodebooking" id="kodebooking" placeholder="kode booking">
+                                <input type="text" class="form-control @error('kodebooking') is-invalid @enderror" name="kodebooking" id="kodebooking" placeholder="kode booking" onkeypress="return hanyaangka(event)">
                                 <button class="btn btn-outline-secondary" type="button" onclick="kodeBooking()" id="kodebooking"><i class='fas fa-dice-d6'></i></button>
                                 @error('kodebooking')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -342,7 +342,15 @@
             // console.log(hari);
         }
         function kodeBooking() { 
-            alert("coba bos")
+            // alert("coba bos")
+            document.getElementById("kodebooking").value = Math.floor(Math.random() * 1000000)
+        }
+        function hanyaangka(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+                return true;
+            }
         }
     </script>
 
