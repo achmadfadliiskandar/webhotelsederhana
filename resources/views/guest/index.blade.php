@@ -120,8 +120,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                         @forelse ($guests as $guest)
+                        <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
                                 <div class="form-check">

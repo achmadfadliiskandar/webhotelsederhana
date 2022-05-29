@@ -9,6 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="icon" href="{{asset('gambarhotel/IndigoShine.jpg')}}">
 
+    <!-- icon dadu -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> --}}
+    <!-- end icon dadu -->
+
     <title>IndigoShine-Hotel</title>
     </head>
 <body>
@@ -134,6 +139,11 @@
             <div class="col-sm-12 my-3">
                 <h2 class="text-center">Silahkan Pesan Kamar di bawah ini</h2>
                 @if (empty(Auth::user()->name))
+                @if (session('fail'))
+                <div class="alert alert-danger">
+                    {{ session('fail') }}
+                </div>
+                @endif
                 @if ($kamars->status == 'tersedia')
                 <form action="/guest/store" method="POST">
                     @csrf
@@ -158,6 +168,17 @@
                             @error('nomortelpon')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="kodebooking">Kode Booking</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control @error('kodebooking') is-invalid @enderror" name="kodebooking" id="kodebooking" placeholder="kode booking">
+                                <button class="btn btn-outline-secondary" type="button" onclick="kodeBooking()" id="kodebooking"><i class='fas fa-dice-d6'></i></button>
+                                @error('kodebooking')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <small>tolong jaga kode ini dengan baik dan jangan beritahu siapapun</small>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -319,6 +340,9 @@
                 document.getElementById("jmlhari").innerHTML = hari;
             }
             // console.log(hari);
+        }
+        function kodeBooking() { 
+            alert("coba bos")
         }
     </script>
 
