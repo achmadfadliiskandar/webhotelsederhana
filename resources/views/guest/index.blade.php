@@ -104,6 +104,18 @@
             {{ session('status') }}
         </div>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <p class="text-danger">{{ $error }}</p>
+                    @endforeach
+            </div>
+        @endif
+        @if (session('fail'))
+            <div class="alert alert-danger">
+                {{ session('fail') }}
+            </div>
+        @endif
         {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
         <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
         <div style="overflow-x:auto">
@@ -138,7 +150,9 @@
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Batalkan</button>
                                 </form> --}}
-                                
+                                <button type="button" class="btn btn-danger cancelorder" value="{{$guest->id}}">
+                                    Batalkan
+                                </button>
                             </td>
                         @empty
                             <td colspan="8" class="text-danger text-center text-capitalize">tidak ada data</td>
@@ -158,6 +172,37 @@
                 </tfoot>
             </table>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancel Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="/cancel-guest/" method="post">
+                @csrf
+                @method('DELETE')
+                <p>Apa Kamu yakin membatalkan order ini ? </p>
+                <input type="hidden" name="id" id="id" class="form-control">
+                <div class="mb-3" style="display: none;">
+                    <label for="kodebooking">Kode Booking</label>
+                    <input type="hidden" name="kodebooking" id="kodebooking" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="kodedelete">Kode Delete</label>
+                    <input type="text" name="kodedelete" required id="kodedelete" class="form-control">
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Batalkan Sekarang</button>
+            </form>
+            </div>
+            </div>
+            </div>
+        </div>
+        </div>
     </div>
     <!-- footer -->
     @include('templatelandingpage.footer')
@@ -165,21 +210,34 @@
 
     <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready( function () {
             $('#example').DataTable();
+            $(document).on('click','.cancelorder', function () {
+                var id = $(this).val();
+                // alert(id);
+                $('#exampleModal').modal('show');
+                $('#id').val(id);
+                $.ajax({
+                    type: "GET",
+                    url: "/get-cancel/" + id,
+                    success: function (response) {
+                        $("#kodebooking").val(response.guest.kodebooking)
+                    }
+                });
+            });
         });
     </script>
+
     </body>
 </html>
 <style>

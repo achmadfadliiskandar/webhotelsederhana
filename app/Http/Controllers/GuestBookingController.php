@@ -58,4 +58,28 @@ class GuestBookingController extends Controller
             return redirect('guestorder')->with('status','Kamar Berhasil Di Pesan');
         }
     }
+    public function delete(Request $request){
+        $request->validate([
+            'kodebooking' => 'required|numeric',
+        ]);
+        $id = $request->input('id');
+        $guest = GuestBooking::find($id);
+        $guest->kodebooking = $request->input('kodebooking');
+        $guest->kodedelete = $request->input('kodedelete');
+        if ($guest->kodebooking == $guest->kodedelete) {
+            // dd("bisa di hapus");
+            $guest->delete();
+            return redirect('guestorder')->with('status','Pesanan Berhasil Dibatalkan');
+        } else {
+            // dd("nggak bisa di hapus");
+            return redirect('guestorder')->with('fail','Pesanan Gagal Dibatalkan');
+        }
+    }
+    public function cancel($id){
+        $guest = GuestBooking::find($id);
+        return response()->json([
+            'status' => 200,
+            'guest' => $guest
+        ]);
+    }
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("email");
             $table->integer('kamar_id');
             $table->integer('kodebooking')->nullable();
+            $table->integer('kodedelete')->nullable();
             $table->integer('jumlah_penginap');
             $table->date('rencanacheckin');
             $table->date('rencanacheckout');

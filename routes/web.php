@@ -136,4 +136,6 @@ Route::get('fasilitas_kamars','index');
 Route::controller(GuestBookingController::class)->group(function () {
     Route::get('/guestorder', 'index')->middleware('guest');
     Route::post('/guest/store','store')->middleware('guest');
+    Route::delete('/cancel-guest','delete')->middleware('guest');
+    Route::get('/get-cancel/{id}','cancel')->middleware('guest');
 });
