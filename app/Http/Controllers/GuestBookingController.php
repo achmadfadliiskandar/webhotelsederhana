@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\GuestBooking;
+use App\Models\GuestCetakPdf;
 use Illuminate\Http\Request;
-
+use Svg\Tag\Rect;
 
 class GuestBookingController extends Controller
 {
@@ -81,5 +82,20 @@ class GuestBookingController extends Controller
             'status' => 200,
             'guest' => $guest
         ]);
+    }
+    public function cetakpdf(Request $request){
+        // dd($request->all());
+        if (!empty($request->input('guest_bookings_id'))) {
+            $will_insert = [];
+            foreach ($request->input('guest_bookings_id') as $key => $value) {
+                array_push($will_insert,
+                ['guest_bookings_id'=>$value]
+            );
+            }
+            GuestCetakPdf::insert($will_insert);
+        } else {
+            $checkbox = '';
+        }
+        return redirect('guestorder')->with('status','Laporan Pdf Berhasil Di Cetak');
     }
 }

@@ -119,6 +119,8 @@
         {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
         <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
         <div style="overflow-x:auto">
+            <form action="/insertpdf/store" method="post">
+                @csrf
             <table id="example" class="table table-striped table table-hover table table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -132,13 +134,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                        @forelse ($guests as $guest)
+                    @forelse ($guests as $guest)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
                                 <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            </div>
+                                <input class="form-check-input" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]" id="flexCheckDefault">
+                                </div>
                             </td>
                             <td>{{$guest->nama}}</td>
                             <td>{{$guest->nomortelpon}}</td>
@@ -171,6 +173,8 @@
                     </tr>
                 </tfoot>
             </table>
+            <button type="submit" class="btn btn-primary my-3 w-100" style="background-color: #123456;">Cetak Pdf</button>
+        </form>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
