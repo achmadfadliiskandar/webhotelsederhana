@@ -10,7 +10,7 @@
     <link rel="icon" href="{{asset('gambarhotel/IndigoShine.jpg')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-    <title>Guest Order</title>
+    <title>Cetak PDF Guest</title>
     </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
     
@@ -97,8 +97,8 @@
     </nav>
     <!-- end navbar -->
     <div class="container mt-5 pt-3">
-        <h1 class="text-center">Guest Order</h1>
-        <p class="text-center">Order Khusus Pengguna yang tidak memiliki akun</p>
+        <h1 class="text-center">Cetak PDF Guest</h1>
+        <p class="text-center">Cetak PDF khusus guest/tamu yang tidak memiliki akun dan sudah memesan</p>
         @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -119,65 +119,41 @@
         {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
         <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
         <div style="overflow-x:auto">
-            <form action="/insertpdf/store" method="post">
-                @csrf
-            <table id="example" class="table table-striped table table-hover table table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>KodeBooking</th>
-                        <th>Nama</th>
-                        <th>No Telpon</th>
-                        <th>Email</th>
-                        <th>Kamar</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($guests as $guest)
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>
-                            <div class="input-group mb-3">
-                                <div class="input-group-text">
-                                    <input class="form-check-input mt-0" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]">
-                                </div>
-                                <input type="text" class="form-control" name="kata[]">
-                            </div>
-                            </td>
-                            <td>{{$guest->nama}}</td>
-                            <td>{{$guest->nomortelpon}}</td>
-                            <td>{{$guest->email}}</td>
-                            <td>{{$guest->kamar->tipe_kamar->tipe_kamar}}</td>
-                            <td>
-                                {{-- <form action="" method="post" class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Batalkan</button>
-                                </form> --}}
-                                <button type="button" class="btn btn-danger cancelorder" value="{{$guest->id}}">
-                                    Batalkan
-                                </button>
-                            </td>
-                        @empty
-                            <td colspan="8" class="text-danger text-center text-capitalize">tidak ada data</td>
-                        @endforelse
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>No</th>
-                        <th>KodeBooking</th>
-                        <th>Nama</th>
-                        <th>No Telpon</th>
-                        <th>Email</th>
-                        <th>Kamar</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
-            </table>
-            <button type="submit" class="btn btn-primary my-3 w-100" style="background-color: #123456;">Cetak Pdf</button>
-        </form>
+            @php
+            error_reporting(0);
+            $dataisi = $pdfs->keyBy('id');
+            @endphp
+    <table class="table table-bordered table table-striped table table-hover" id="example">
+        <thead>
+            <tr>
+            <td>No</td>
+            <td>guest id</td>
+            <td>Nama Pemesan</td>
+            <td style="text-transform:capitalize">Kamar yang di pesan</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($pdf as $p)
+            <tr>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$p->guest_bookings_id}}</td>
+                <td>
+                    @php
+                        $hasil_split = explode(',',$p->guest_bookings_id);
+                    @endphp
+                    @foreach ($hasil_split as $item)
+                        {{$dataisi[$item]->nama}}
+                    @endforeach
+                </td>
+                <td>
+                    @foreach ($hasil_split as $item)
+                        {{$dataisi[$item]->kamar->tipe_kamar->tipe_kamar}}
+                    @endforeach
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
         </div>
     </div>
     <!-- footer -->
@@ -198,6 +174,19 @@
     <script>
         $(document).ready( function () {
             $('#example').DataTable();
+            $(document).on('click','.cancelorder', function () {
+                var id = $(this).val();
+                // alert(id);
+                $('#exampleModal').modal('show');
+                $('#id').val(id);
+                $.ajax({
+                    type: "GET",
+                    url: "/get-cancel/" + id,
+                    success: function (response) {
+                        $("#kodebooking").val(response.guest.kodebooking)
+                    }
+                });
+            });
         });
     </script>
 
@@ -238,4 +227,3 @@
 <!-- end css -->
 <!-- js -->
 <!-- end js -->
-

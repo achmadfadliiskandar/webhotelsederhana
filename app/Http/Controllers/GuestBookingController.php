@@ -84,18 +84,16 @@ class GuestBookingController extends Controller
         ]);
     }
     public function cetakpdf(Request $request){
-        // dd($request->all());
-        if (!empty($request->input('guest_bookings_id'))) {
-            $will_insert = [];
-            foreach ($request->input('guest_bookings_id') as $key => $value) {
-                array_push($will_insert,
-                ['guest_bookings_id'=>$value]
-            );
-            }
-            GuestCetakPdf::insert($will_insert);
-        } else {
-            $checkbox = '';
-        }
-        return redirect('guestorder')->with('status','Laporan Pdf Berhasil Di Cetak');
+        $data = $request->all();
+        $guestpdf = new GuestCetakPdf;
+        $guestpdf->guest_bookings_id = implode(',',$data['guest_bookings_id']);
+        $guestpdf->kata = implode(',',$data['kata']);
+        $guestpdf->save();
+        return redirect('guestorderpdf')->with('status','Laporan Pdf Berhasil Di Cetak');
+    }
+    public function dapatkanpdf(){
+        $pdf = GuestCetakPdf::all();
+        $pdfs = GuestBooking::all();
+        return view('guest.pdf',compact('pdf','pdfs'));
     }
 }

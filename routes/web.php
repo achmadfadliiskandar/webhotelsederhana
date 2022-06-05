@@ -140,4 +140,5 @@ Route::controller(GuestBookingController::class)->group(function () {
     Route::delete('/cancel-guest','delete')->middleware('guest');
     Route::get('/get-cancel/{id}','cancel')->middleware('guest');
     Route::post('/insertpdf/store','cetakpdf')->middleware('guest');
+    Route::get('/guestorderpdf','dapatkanpdf')->middleware('guest');
 });
