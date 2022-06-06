@@ -120,7 +120,7 @@
         <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
         <div style="overflow-x:auto">
             @php
-            error_reporting(0);
+            // error_reporting(0);
             $dataisi = $pdfs->keyBy('id');
             @endphp
     <table class="table table-bordered table table-striped table table-hover" id="example">

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('guest_cetak_pdfs', function (Blueprint $table) {
             $table->id();
             $table->integer("guest_bookings_id")->nullable();
+            $table->integer("kodebooking")->nullable();
             $table->timestamps();
         });
     }
