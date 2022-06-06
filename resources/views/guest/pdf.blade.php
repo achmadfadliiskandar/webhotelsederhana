@@ -127,16 +127,18 @@
         <thead>
             <tr>
             <td>No</td>
-            <td>guest id</td>
+
             <td>Nama Pemesan</td>
             <td style="text-transform:capitalize">Kamar yang di pesan</td>
+            <td>KodeBooking</td>
+            <td>Action</td>
             </tr>
         </thead>
         <tbody>
             @foreach ($pdf as $p)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$p->guest_bookings_id}}</td>
+
                 <td>
                     @php
                         $hasil_split = explode(',',$p->guest_bookings_id);
@@ -149,6 +151,28 @@
                     @foreach ($hasil_split as $item)
                         {{$dataisi[$item]->kamar->tipe_kamar->tipe_kamar}}
                     @endforeach
+                </td>
+                {{-- <td>
+                    <input type="text" class="form-control" name="kodeupdate" value="{{$p->guest->kodebooking}}">
+                </td> --}}
+                <form action="/updatekb/update/{{$p->id}}" method="post" class="d-inline-block">
+                    @csrf
+                    @method('PUT')
+                <td>
+                    <input type="number" class="form-control" name="kodebooking" id="kodebooking">
+                </td>
+                <td>
+                        <button type="submit" class="btn btn-success">Update KodeBooking</button>
+                    </form>
+                    @if ($p->kodebooking == NULL)
+                    @foreach ($hasil_split as $item)
+                    <span class="badge bg-danger">Laporan PDF</span>
+                    @endforeach
+                    @else
+                    @foreach ($hasil_split as $item)
+                    <a href=""  class="btn btn-danger">Laporan PDF</a>
+                    @endforeach
+                    @endif
                 </td>
             </tr>
             @endforeach

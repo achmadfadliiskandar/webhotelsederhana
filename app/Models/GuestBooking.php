@@ -13,4 +13,7 @@ class GuestBooking extends Model
     public function kamar(){
         return $this->belongsTo(Kamar::class);
     }
+    public function guestpdf(){
+        return $this->hasMany(GuestCetakPdf::class);
+    }
 }

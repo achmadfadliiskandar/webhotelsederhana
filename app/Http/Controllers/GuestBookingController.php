@@ -106,8 +106,23 @@ class GuestBookingController extends Controller
         return redirect('guestorderpdf')->with('status','Laporan Pdf Berhasil Di Cetak');
     }
     public function dapatkanpdf(){
-        $pdf = GuestCetakPdf::all();
+        $pdf = GuestCetakPdf::with('guest')->get();
         $pdfs = GuestBooking::all();
         return view('guest.pdf',compact('pdf','pdfs'));
+    }
+    public function addkodebooking(Request $request,$id){
+        $orderkbguest = GuestCetakPdf::find($id);
+        $orderkbguest->kodeupdate = $orderkbguest->guest->kodebooking;
+        $orderkbguest->kodebooking = $request->kodebooking;
+        // $orderkbguest->save();
+        if ($orderkbguest->kodeupdate == $orderkbguest->kodebooking) {
+            // echo "bisa";
+            $orderkbguest->save();
+        } else {
+            return redirect('guestorderpdf')->with('fail','kode booking gagal di dapatkan');
+            // echo "tidak bisa";
+        }
+        
+        return redirect('guestorderpdf')->with('status','kode booking berhasil di tambahkan dan silahkan bawa bukti untuk ke hotel');
     }
 }

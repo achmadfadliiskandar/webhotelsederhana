@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer("guest_bookings_id")->nullable();
             $table->integer("kodebooking")->nullable();
+            $table->integer("kodeupdate")->nullable();
             $table->timestamps();
         });
     }
