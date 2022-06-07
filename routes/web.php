@@ -142,4 +142,5 @@ Route::controller(GuestBookingController::class)->group(function () {
     Route::post('/insertpdf/store','cetakpdf')->middleware('guest');
     Route::get('/guestorderpdf','dapatkanpdf')->middleware('guest');
     Route::put('/updatekb/update/{id}','addkodebooking')->middleware('guest');
+    Route::get('/laporanpdf/guest/{id}','laporanpdfguest')->middleware('guest');
 });

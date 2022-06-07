@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\GuestBooking;
 use App\Models\GuestCetakPdf;
+use Barryvdh\DomPDF\Facade;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Svg\Tag\Rect;
 
@@ -124,5 +126,14 @@ class GuestBookingController extends Controller
         }
         
         return redirect('guestorderpdf')->with('status','kode booking berhasil di tambahkan dan silahkan bawa bukti untuk ke hotel');
+    }
+    public function laporanpdfguest($id){
+        $guestpdf = GuestCetakPdf::with('guest')->where('id',$id)->first();
+        if ($guestpdf == NULL) {
+            return abort(404);
+        } else {
+        $pdf = Pdf::loadview('guest.laporanpdf',compact('guestpdf'));
+        return $pdf->stream();
+        }
     }
 }

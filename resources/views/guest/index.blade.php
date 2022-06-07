@@ -104,20 +104,30 @@
             {{ session('status') }}
         </div>
         @endif
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                     @foreach ($errors->all() as $error)
                         <p class="text-danger">{{ $error }}</p>
                     @endforeach
             </div>
-        @endif
+        @endif --}}
         @if (session('fail'))
             <div class="alert alert-danger">
                 {{ session('fail') }}
             </div>
         @endif
         {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
-        <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="alert alert-warning" style="text-transform: capitalize;">jika sudah berhasil terpesan maka pesanan kamar yang anda inputkan disarankan langsung pilih nama kamar yang anda pesan atau nama anda dan tolong jangan beritahu kode booking anda kepada siapapun!!</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="alert alert-secondary" style="text-transform: capitalize;">dan disarankan ketika sudah yakin silahkan pilih melalui checkbox dan langsung klik Cetak Pdf</div>
+            </div>
+        </div>
         <div style="overflow-x:auto">
             <form action="/insertpdf/store" method="post">
                 @csrf
@@ -183,8 +193,8 @@
             <button type="submit" class="btn btn-primary my-3 w-100" style="background-color: #123456;">Cetak Pdf</button>
         </form>
         </div>
-         <!-- Modal -->
-         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -232,7 +242,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script>
-         $(document).ready( function () {
+        $(document).ready( function () {
             $('#example').DataTable();
             $(document).on('click','.cancelorder', function () {
                 var id = $(this).val();
