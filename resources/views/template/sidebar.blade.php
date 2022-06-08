@@ -55,6 +55,12 @@
 <li class="nav-item mt-3 mb-3">
     <a href="/resepsionis.guestorder/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.guestorder') ? 'border: 1px solid #123412;' : '' }}">Data Tamu Guest</a>
 </li>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.guestorderpdf/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.guestorderpdf') ? 'border: 1px solid #32a852;' : '' }}">Data Tamu Guest Pdf</a>
+</li>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.guestordercancel/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.guestordercancel') ? 'border: 1px solid #3281a8;' : '' }}">Data Tamu Guest Cancel</a>
+</li>
 @endif
 @if (Auth::user()->role == 'tamu')
 <li class="nav-item">

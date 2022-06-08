@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GuestBooking;
+use App\Models\GuestBookingCancel;
 use App\Models\GuestCetakPdf;
 use Barryvdh\DomPDF\Facade;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -135,5 +136,19 @@ class GuestBookingController extends Controller
         $pdf = Pdf::loadview('guest.laporanpdf',compact('guestpdf'));
         return $pdf->stream();
         }
+    }
+    public function resepguest(){
+        $guests = GuestBooking::all();
+        return view('resepsionis.guestorder',compact('guests'));
+    }
+    public function resepguestpdf(){
+        $pdf = GuestCetakPdf::with('guest')->get();
+        $pdfs = GuestBooking::all();
+        return view('resepsionis.guestorderpdf',compact('pdf','pdfs'));
+    }
+    public function resepguestcancel(){
+        $guestcancel = GuestBookingCancel::all();
+        $pdfs = GuestBooking::all();
+        return view('resepsionis.guestordercancel',compact('guestcancel','pdfs'));
     }
 }

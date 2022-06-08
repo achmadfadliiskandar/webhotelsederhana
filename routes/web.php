@@ -143,4 +143,7 @@ Route::controller(GuestBookingController::class)->group(function () {
     Route::get('/guestorderpdf','dapatkanpdf')->middleware('guest');
     Route::put('/updatekb/update/{id}','addkodebooking')->middleware('guest');
     Route::get('/laporanpdf/guest/{id}','laporanpdfguest')->middleware('guest');
+    Route::get('/resepsionis.guestorder','resepguest')->middleware('checkRole:resepsionis');
+    Route::get('/resepsionis.guestorderpdf','resepguestpdf')->middleware('checkRole:resepsionis');
+    Route::get('/resepsionis.guestordercancel','resepguestcancel')->middleware('checkRole:resepsionis');
 });
