@@ -151,4 +151,9 @@ class GuestBookingController extends Controller
         $pdfs = GuestBooking::all();
         return view('resepsionis.guestordercancel',compact('guestcancel','pdfs'));
     }
+    public function resepguestpay(){
+        $pdf = GuestCetakPdf::with('guest')->get();
+        $pdfs = GuestBooking::all();
+        return view('resepsionis.guestpay',compact('pdf','pdfs'));
+    }
 }

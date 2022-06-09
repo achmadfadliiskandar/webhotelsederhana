@@ -18,6 +18,11 @@ return new class extends Migration
             $table->integer("guest_bookings_id")->nullable();
             $table->integer("kodebooking")->nullable();
             $table->integer("kodeupdate")->nullable();
+            $table->integer("hargakamar")->nullable();
+            $table->integer("lamamenginap")->nullable();
+            $table->integer("totalbayar")->nullable();
+            $table->enum('metodepembayaran',['cash','transfer'])->nullable();
+            $table->enum('statuspembayaran',['lunas','belumlunas'])->nullable();
             $table->timestamps();
         });
     }

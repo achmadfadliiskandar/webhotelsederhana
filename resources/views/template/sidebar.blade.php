@@ -61,6 +61,9 @@
 <li class="nav-item mt-3 mb-3">
     <a href="/resepsionis.guestordercancel/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.guestordercancel') ? 'border: 1px solid #3281a8;' : '' }}">Data Tamu Guest Cancel</a>
 </li>
+<li class="nav-item mt-3 mb-3">
+    <a href="/resepsionis.guestpay/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.guestpay') ? 'border: 1px solid #a89d32;' : '' }}">Data Tamu Guest Pay</a>
+</li>
 @endif
 @if (Auth::user()->role == 'tamu')
 <li class="nav-item">
