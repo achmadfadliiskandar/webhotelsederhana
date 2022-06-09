@@ -38,11 +38,17 @@
         <td>Nama Pemesan</td>
         <td style="text-transform:capitalize">Kamar yang di pesan</td>
         <td>KodeBooking</td>
-        <td>Action</td>
         </tr>
     </thead>
     <tbody>
-        
+    @foreach ($guestcancel as $cancel)
+        <tr>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$cancel->nama}}</td>
+            <td>{{$cancel->kamar->tipe_kamar->tipe_kamar}}</td>
+            <td>{{$cancel->kodebooking}}</td>
+        </tr>
+    @endforeach
     </tbody>
 </table>
     </div>

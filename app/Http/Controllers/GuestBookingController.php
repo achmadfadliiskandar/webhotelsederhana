@@ -147,7 +147,7 @@ class GuestBookingController extends Controller
         return view('resepsionis.guestorderpdf',compact('pdf','pdfs'));
     }
     public function resepguestcancel(){
-        $guestcancel = GuestBookingCancel::all();
+        $guestcancel = GuestBookingCancel::with('kamar')->get();
         $pdfs = GuestBooking::all();
         return view('resepsionis.guestordercancel',compact('guestcancel','pdfs'));
     }

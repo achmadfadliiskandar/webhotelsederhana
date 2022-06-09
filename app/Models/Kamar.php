@@ -33,6 +33,9 @@ class Kamar extends Model
     public function guestbookings(){
         return $this->hasOne(GuestBooking::class);
     }
+    public function guestbookingscancel(){
+        return $this->hasOne(GuestBookingCancel::class);
+    }
     public function kamarorder(){
         return $this->hasOne(KamarOrder::class);
     }

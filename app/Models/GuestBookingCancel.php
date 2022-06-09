@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class GuestBookingCancel extends Model
 {
     use HasFactory;
+    public function kamar(){
+        return $this->belongsTo(Kamar::class);
+    }
 }
