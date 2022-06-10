@@ -147,4 +147,5 @@ Route::controller(GuestBookingController::class)->group(function () {
     Route::get('/resepsionis.guestorderpdf','resepguestpdf')->middleware('checkRole:resepsionis');
     Route::get('/resepsionis.guestordercancel','resepguestcancel')->middleware('checkRole:resepsionis');
     Route::get('/resepsionis.guestpay','resepguestpay')->middleware('checkRole:resepsionis');
+    Route::put('/resepsionis/pay/{id}','resepguestpayment')->middleware('checkRole:resepsionis');
 });

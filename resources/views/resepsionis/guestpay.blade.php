@@ -74,6 +74,9 @@
                     {{$dataisi[$item]->kamar->tipe_kamar->tipe_kamar}}
                 @endforeach
             </td>
+            <form action="/resepsionis/pay/{{$p->id}}" method="post">
+                @csrf
+                @method('PUT')
             <td>
                 @foreach ($hasil_split as $item)
                     <input type="text" class="form-control" readonly name="hargakamar" value="{{$dataisi[$item]->kamar->hargakamarpermalam}}">
@@ -89,10 +92,10 @@
                 <input type="text" class="form-control" readonly name="totalbayar" value="{{$p->guest->totalharga}}">
             </td>
             <td>
-                <input type="text" class="form-control" name="jumlah_dibayar">
+                <input type="text" class="form-control" name="jumlah_dibayar" value="{{$p->jumlah_dibayar}}">
             </td>
             <td>
-                <input type="text" readonly class="form-control" name="kembalian">
+                <input type="text" readonly class="form-control" name="kembalian" value="{{$p->kembalian}}">
             </td>
             <td>
                 <select class="form-select" name="metodepembayaran" aria-label="Default select example">
@@ -109,7 +112,6 @@
                 </select>
             </td>
             <td>
-                <form action="" method="post">
                     <button type="submit" class="btn btn-success">Update Pembayaran</button>
                 </form>
             </td>

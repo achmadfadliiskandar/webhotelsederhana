@@ -156,4 +156,17 @@ class GuestBookingController extends Controller
         $pdfs = GuestBooking::all();
         return view('resepsionis.guestpay',compact('pdf','pdfs'));
     }
+    public function resepguestpayment(Request $request,$id){
+        $guestpayment = GuestCetakPdf::find($id);
+        $guestpayment->hargakamar = $request->hargakamar;
+        $guestpayment->lamamenginap = $request->lamamenginap;
+        $guestpayment->totalbayar = $request->totalbayar;
+        $guestpayment->hargakamar = $request->hargakamar;
+        $guestpayment->jumlah_dibayar = $request->jumlah_dibayar;
+        $guestpayment->kembalian = $guestpayment->jumlah_dibayar - $guestpayment->totalbayar;
+        $guestpayment->metodepembayaran = $request->metodepembayaran;
+        $guestpayment->statuspembayaran = $request->statuspembayaran;
+        $guestpayment->save();
+        return redirect('resepsionis.guestpay')->with('status','pembayaran berhasil di tambahkan');
+    }
 }
