@@ -117,14 +117,14 @@
             </div>
         @endif
         {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-sm-6">
                 <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
             </div>
             <div class="col-sm-6">
                 <div class="alert alert-warning" style="text-transform: capitalize;">Jika anda sudah memilih kamar anda silahkan cetak pdfnya disini dan selalu ingat kodebooking anda untuk mencetak pdfnya dan yakin ketika ingin mengisi kodebookingnya dikarenakan hanya ada 1 kali kesempatan</div>
             </div>
-        </div>
+        </div> --}}
         <div style="overflow-x:auto">
             @php
             // error_reporting(0);

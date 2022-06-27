@@ -117,17 +117,6 @@
             </div>
         @endif
         {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="alert alert-warning" style="text-transform: capitalize;">jika sudah berhasil terpesan maka pesanan kamar yang anda inputkan disarankan langsung pilih nama kamar yang anda pesan atau nama anda dan tolong jangan beritahu kode booking anda kepada siapapun!!</div>
-            </div>
-            <div class="col-sm-4">
-                <div class="alert alert-secondary" style="text-transform: capitalize;">dan disarankan ketika sudah yakin silahkan pilih melalui checkbox dan langsung klik Cetak Pdf</div>
-            </div>
-        </div>
         <div style="overflow-x:auto">
             <form action="/insertpdf/store" method="post">
                 @csrf
@@ -135,7 +124,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Checlist</th>
+                        <th>Checklist</th>
                         <th>Nama</th>
                         <th>No Telpon</th>
                         <th>Email</th>
@@ -157,7 +146,11 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
+                                @if ($guest->kodeupdate == null)
+                                <input class="form-check-input mt-0" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]" disabled>
+                                @else
                                 <input class="form-check-input mt-0" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]">
+                                @endif
                             </td>
                             <td>{{$guest->nama}}</td>
                             <td>{{$guest->nomortelpon}}</td>
@@ -169,6 +162,9 @@
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Batalkan</button>
                                 </form> --}}
+                                <button type="button" class="btn btn-success konfirmasi" value="{{$guest->id}}">
+                                    Konfirmasi
+                                </button>
                                 <button type="button" class="btn btn-danger cancelorder" value="{{$guest->id}}">
                                     Batalkan
                                 </button>
@@ -181,7 +177,7 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Checlist</th>
+                        <th>Checklist</th>
                         <th>Nama</th>
                         <th>No Telpon</th>
                         <th>Email</th>
@@ -214,10 +210,44 @@
                     <div class="mb-3">
                         <label for="kodedelete">Kode Delete</label>
                         <input type="text" name="kodedelete" required id="kodedelete" class="form-control">
+                        <small>pakai kode booking anda untuk menghapus order anda</small>
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-danger">Batalkan Sekarang</button>
+                </form>
+                </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Modal Konfirmasi -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form action="/kode-update/" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <p>Nama : <strong id="nama"></strong> </p>
+                    <input type="hidden" name="id" id="id_s" class="form-control">
+                    <div class="mb-3" style="display: none;">
+                        <label for="kodebooking">Kode Booking</label>
+                        <input type="hidden" name="kodebooking" id="kodebookings" class="form-control kodebooking">
+                    </div>
+                    <div class="mb-3">
+                        <label for="kodeupdate">Kode Update</label>
+                        <input type="text" name="kodeupdate" required id="kodeupdate" class="form-control">
+                        <small>pakai kode booking anda untuk mengkonfirmasi order an anda</small>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Konfirmasi Sekarang</button>
                 </form>
                 </div>
                 </div>
@@ -257,6 +287,20 @@
                     }
                 });
             });
+            $(document).on('click','.konfirmasi',function(){
+                var id_s = $(this).val();
+                // alert(id);
+                $('#confirmationModal').modal('show')
+                $('#id_s').val(id_s);
+                $.ajax({
+                    type: "GET",
+                    url: "/get-konfirmasi/" + id_s,
+                    success: function (response) {
+                        $("#nama").text(response.guest.nama)
+                        $("#kodebookings").val(response.guest.kodebooking)
+                    }
+                });
+            })
         });
     </script>
 
