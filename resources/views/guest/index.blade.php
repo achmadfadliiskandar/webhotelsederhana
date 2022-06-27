@@ -96,9 +96,37 @@
         </div>
     </nav>
     <!-- end navbar -->
+    <!-- jumbotron -->
+    <div class="container-fluid" id="gambarhotel">
+        <div class="jumbotron">
+            <div class="container-fluid text-dark p-5">
+            <div class="container p-5">
+                <div class="row">
+                    <div class="col-lg-12 text-light">
+                        <h1 class="display-4 fw-bold shadow">Halaman Pemesanan Tanpa Akun</h1>
+                        <hr>
+                        <h3 class="display-4 fw-bold shadow">Accountless Order Page</h3>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- end jumbotron -->
     <div class="container mt-5 pt-3">
         <h1 class="text-center">Guest Order</h1>
         <p class="text-center">Order Khusus Pengguna yang tidak memiliki akun</p>
+        @if (session('warning'))
+        <div class="alert alert-warning">
+            {{ session('warning') }}
+        </div>
+        @endif
+        <form action="/guestorder/" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="kata-kunci" placeholder="silahkan cari kodebooking anda">
+            <button class="btn btn-outline-secondary text-capitalize" type="submit" id="button-addon2">cari</button>
+        </form>
+        </div>
         @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -120,6 +148,7 @@
         <div style="overflow-x:auto">
             <form action="/insertpdf/store" method="post">
                 @csrf
+            @if (isset($guests))
             <table id="example" class="table table-striped table table-hover table table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -142,6 +171,7 @@
                             </ul>
                         </div>
                     @endif
+                    @if (count($guests) > 0)
                     @forelse ($guests as $guest)
                         <tr>
                             <td>{{$loop->iteration}}</td>
@@ -173,6 +203,9 @@
                             <td colspan="8" class="text-danger text-center text-capitalize">tidak ada data</td>
                         @endforelse
                     </tr>
+                    @else
+                    <div class="alert alert-danger">Maaf yang anda cari tidak ada</div>
+                    @endif
                 </tbody>
                 <tfoot>
                     <tr>
@@ -187,6 +220,7 @@
                 </tfoot>
             </table>
             <button type="submit" class="btn btn-primary my-3 w-100" style="background-color: #123456;">Cetak Pdf</button>
+            @endif
         </form>
         </div>
         <!-- Modal -->
@@ -311,10 +345,11 @@
         background-color: #4b0082;
     }
     #gambarhotel{
-        background-image: url('gambarhotel/halamanhotel2.jpg');
+        background-image: url('/gambarhotel/halamanhotel2.jpg');
         background-repeat: no-repeat;
         /* background-size: auto; */
         background-size: 100% 100%;
+        text-shadow: 2px 2px #4b0082;
     }
     .footer{
         margin-top: 30px;

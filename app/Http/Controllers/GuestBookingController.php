@@ -13,8 +13,21 @@ use Svg\Tag\Rect;
 class GuestBookingController extends Controller
 {
     public function index(){
-        $guests = GuestBooking::all();
-        return view('guest.index',compact('guests'));
+        if (isset($_GET['kata-kunci'])) {
+            $keyword = $_GET['kata-kunci'];
+            $guests = GuestBooking::where('kodebooking','LIKE','%'.$keyword.'%')->get();
+            if ($_GET['kata-kunci'] > 0) {
+            // echo "langsung klik";
+            return view('guest.index',compact('guests'));
+            }else{
+                return redirect()->back()->with('warning','tolong sertakan kata kunci');
+                // echo "good";
+            }
+        }else{
+            return view('guest.index');
+        }
+        // $guests = GuestBooking::all();
+        // return view('guest.index',compact('guests'));
     }
     public function store(Request $request){
         $request->validate([
