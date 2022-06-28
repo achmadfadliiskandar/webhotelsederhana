@@ -96,6 +96,23 @@
         </div>
     </nav>
     <!-- end navbar -->
+        <!-- jumbotron -->
+        <div class="container-fluid" id="gambarhotel">
+            <div class="jumbotron">
+                <div class="container-fluid text-dark p-5">
+                <div class="container p-5">
+                    <div class="row">
+                        <div class="col-lg-12 text-light">
+                            <h1 class="display-4 fw-bold shadow">Halaman PDF</h1>
+                            <hr>
+                            <h3 class="display-4 fw-bold shadow">Page PDF</h3>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- end jumbotron -->
     <div class="container mt-5 pt-3">
         <h1 class="text-center">Cetak PDF Guest</h1>
         <p class="text-center">Cetak PDF khusus guest/tamu yang tidak memiliki akun dan sudah memesan</p>

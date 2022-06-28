@@ -178,6 +178,9 @@
                             <td>
                                 @if ($guest->kodeupdate == null)
                                 <input class="form-check-input mt-0" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]" disabled>
+                                @elseif($guest->konfirmasi == "DONE")
+                                <span class="text-danger">Done</span>
+                                {{-- <input class="form-check-input mt-0" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]" disabled> --}}
                                 @else
                                 <input class="form-check-input mt-0" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]">
                                 @endif
@@ -192,12 +195,16 @@
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Batalkan</button>
                                 </form> --}}
+                                @if ($guest->konfirmasi == "DONE")
+                                <span class="text-danger">Done</span>
+                                @else
                                 <button type="button" class="btn btn-success konfirmasi" value="{{$guest->id}}">
                                     Konfirmasi
                                 </button>
                                 <button type="button" class="btn btn-danger cancelorder" value="{{$guest->id}}">
                                     Batalkan
                                 </button>
+                                @endif
                             </td>
                         @empty
                             <td colspan="8" class="text-danger text-center text-capitalize">tidak ada data</td>

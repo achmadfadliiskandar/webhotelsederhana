@@ -44,11 +44,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Checlist</th>
+                        {{-- <th>Checlist</th> --}}
                         <th>Nama</th>
+                        <th>KodeBooking</th>
                         <th>No Telpon</th>
                         <th>Email</th>
                         <th>Kamar</th>
+                        <th>Keterangan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -65,13 +67,18 @@
                     @forelse ($guests as $guest)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>
-                                <input class="form-check-input mt-0" type="checkbox" value="{{$guest->id}}" name="guest_bookings_id[]">
-                            </td>
                             <td>{{$guest->nama}}</td>
+                            <td>{{$guest->kodebooking}}</td>
                             <td>{{$guest->nomortelpon}}</td>
                             <td>{{$guest->email}}</td>
                             <td>{{$guest->kamar->tipe_kamar->tipe_kamar}}</td>
+                            <td>
+                                @if($guest->konfirmasi == "DONE")
+                                <span class="text-danger">Done</span>
+                                @else
+                                <span class="text-warning">Not Done</span>
+                                @endif
+                            </td>
                             <td>
                                 {{-- <form action="" method="post" class="d-inline-block">
                                     @csrf
@@ -90,16 +97,18 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Checlist</th>
+                        {{-- <th>Checlist</th> --}}
                         <th>Nama</th>
+                        <th>KodeBooking</th>
                         <th>No Telpon</th>
                         <th>Email</th>
                         <th>Kamar</th>
+                        <th>Keterangan</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
-            <button type="submit" class="btn btn-primary my-3 w-100" style="background-color: #123456;">Cetak Pdf</button>
+            {{-- <button type="submit" class="btn btn-primary my-3 w-100" style="background-color: #123456;">Cetak Pdf</button> --}}
         </form>
         </div>
         <!-- Modal -->

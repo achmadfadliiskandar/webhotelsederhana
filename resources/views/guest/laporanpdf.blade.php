@@ -69,10 +69,10 @@
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">Total Yang Harus Di bayarkan : {{number_format($guestpdf->guest->totalharga)}}</li>
-        <li class="list-group-item text-capitalize">dibayar : </li>
-        <li class="list-group-item">kembalian : </li>
-        <li class="list-group-item">keterangan : </li>
-        <li class="list-group-item">metode pembayaran : </li>
+        <li class="list-group-item text-capitalize">dibayar : {{number_format($guestpdf->jumlah_dibayar)}}</li>
+        <li class="list-group-item">kembalian : {{number_format($guestpdf->kembalian)}}</li>
+        <li class="list-group-item">keterangan : {{$guestpdf->statuspembayaran}}</li>
+        <li class="list-group-item">metode pembayaran : {{$guestpdf->metodepembayaran}}</li>
     </ul>
     </div>
 </body>

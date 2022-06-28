@@ -169,7 +169,10 @@ class GuestBookingController extends Controller
         $guestpdf = GuestCetakPdf::with('guest')->where('id',$id)->first();
         if ($guestpdf == NULL) {
             return abort(404);
-        } else {
+        }elseif ($guestpdf->kodebooking == NULL) {
+            return abort(404);
+        }
+        else {
         $pdf = Pdf::loadview('guest.laporanpdf',compact('guestpdf'));
         return $pdf->stream();
         }
