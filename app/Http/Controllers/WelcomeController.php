@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 class WelcomeController extends Controller
 {
     public function __construct(MainLogActivitiesServices $log) {
-        $this->logging = $log;
+        // $this->logging = $log;
     }
     public function welcome(){
         // $this->logging->activitylog(true,'halaman welcome');
