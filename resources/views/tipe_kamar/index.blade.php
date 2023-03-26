@@ -41,7 +41,7 @@
             </tr>
             @empty
                 <tr>
-                    <td class="text-danger bg-light">Tipe Kamar Kosong</td>
+                    <td class="text-danger bg-light text-center" colspan="3">Tipe Kamar Kosong</td>
                 </tr>
             @endforelse
         </tbody>
