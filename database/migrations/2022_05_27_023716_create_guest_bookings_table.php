@@ -20,13 +20,14 @@ return new class extends Migration
             $table->string("email");
             $table->integer('kamar_id');
             $table->integer('kodebooking')->nullable();
-            $table->integer('kodeupdate')->nullable();
-            $table->integer('kodedelete')->nullable();
-            $table->string('konfirmasi')->nullable();
+            // $table->integer('hargakamar')->nullable();
+            // $table->integer('kodeupdate')->nullable();
+            // $table->integer('kodedelete')->nullable();
+            // $table->string('konfirmasi')->nullable();
             $table->integer('jumlah_penginap');
             $table->date('rencanacheckin');
             $table->date('rencanacheckout');
-            $table->integer("totalharga");
+            // $table->integer("totalharga");
             $table->integer("lama_menginap");
             $table->integer("dp_dibayar")->nullable();
             // $table->softDeletes();

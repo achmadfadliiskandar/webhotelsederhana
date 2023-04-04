@@ -27,7 +27,9 @@
             <a class="nav-link" href="#saran">Contact</a>
         </li>
         @guest
-        
+        <li class="nav-item">
+            <a class="nav-link" href="/guestorder">Data Pesanan Guest</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="/login/">Login</a>
         </li>

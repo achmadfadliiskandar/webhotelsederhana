@@ -138,6 +138,7 @@
             </div>
             <div class="col-sm-12 my-3">
                 <h2 class="text-center">Silahkan Pesan Kamar di bawah ini</h2>
+                {{-- ini untuk user yang tidak memiliki akun --}}
                 @if (empty(Auth::user()->name))
                 @if (session('fail'))
                 <div class="alert alert-danger">
@@ -145,6 +146,15 @@
                 </div>
                 @endif
                 @if ($kamars->status == 'tersedia')
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <form action="/guest/store" method="POST">
                     @csrf
                     <div class="row">
@@ -204,7 +214,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="hargakamar" class="form-label">Harga Kamar</label>
-                        <input type="number" class="form-control" value="{{$kamars->hargakamarpermalam}}" readonly>
+                        <input type="number" class="form-control" value="{{$kamars->hargakamarpermalam}}" readonly name="hargakamar">
                     </div>
                     <label for="lama_menginap" class="form-label">Lama Menginap</label>
                     <div class="mb-3">
@@ -249,6 +259,7 @@
                     {{ session('fail') }}
                 </div>
                 @endif
+                {{-- ini khusus untuk user yang sudah memiliki akun --}}
                 @if ($kamars->status == 'tersedia')
                 <form action="/welcome/addorder" method="POST">
                     @csrf

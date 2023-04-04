@@ -3,6 +3,7 @@
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FasilitasKamarController;
 use App\Http\Controllers\FasilitasUmumController;
+use App\Http\Controllers\GuestBookingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\SaranController;
@@ -133,20 +134,7 @@ Route::get('fasilitas_kamars','index');
 });
 
 // controller khusus untuk guest / user yang tidak mempunyai akun
-// Route::controller(GuestBookingController::class)->group(function () {
-//     Route::get('/guestorder', 'index')->middleware('guest');
-//     Route::post('/guest/store','store')->middleware('guest');
-//     Route::delete('/cancel-guest','delete')->middleware('guest');
-//     Route::get('/get-cancel/{id}','cancel')->middleware('guest');
-//     Route::post('/insertpdf/store','cetakpdf')->middleware('guest');
-//     Route::get('/guestorderpdf','dapatkanpdf')->middleware('guest');
-//     Route::put('/updatekb/update/{id}','addkodebooking')->middleware('guest');
-//     Route::get('/laporanpdf/guest/{id}','laporanpdfguest');
-//     Route::get('/resepsionis.guestorder','resepguest')->middleware('checkRole:resepsionis');
-//     Route::get('/resepsionis.guestorderpdf','resepguestpdf')->middleware('checkRole:resepsionis');
-//     Route::get('/resepsionis.guestordercancel','resepguestcancel')->middleware('checkRole:resepsionis');
-//     Route::get('/resepsionis.guestpay','resepguestpay')->middleware('checkRole:resepsionis');
-//     Route::put('/resepsionis/pay/{id}','resepguestpayment')->middleware('checkRole:resepsionis');
-//     Route::get('/get-konfirmasi/{id}','konfirmasi')->middleware('guest');
-//     Route::patch('/kode-update','updatekode')->middleware('guest');
-// });
+Route::controller(GuestBookingController::class)->group(function () {
+    Route::get('/guestorder', 'index')->middleware('guest');
+    Route::post('/guest/store','store')->middleware('guest');
+});
