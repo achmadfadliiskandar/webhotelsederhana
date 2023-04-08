@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\GuestBooking;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\PDF;
 
 class GuestBookingController extends Controller
 {
@@ -37,5 +39,15 @@ class GuestBookingController extends Controller
         $flight->dp_dibayar = $request->dp_dibayar;
         $flight->save();
         return redirect('guestorder')->with('status','pesanan berhasil ditambah');
+    }
+    public function cetak_pdf($id){
+        $guests = GuestBooking::find($id);
+        if ($guests == null) {
+            return abort(404);
+        } else {
+        $pdf = FacadePdf::loadView('guest.pdf',compact('guests'));
+        return $pdf->stream();
+        }
+        
     }
 }

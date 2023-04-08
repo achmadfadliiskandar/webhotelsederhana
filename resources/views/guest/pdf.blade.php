@@ -6,23 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="icon" href="{{asset('gambarhotel/IndigoShine.jpg')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="icon" href="{{asset('gambarhotel/IndigoShine.jpg')}}"> --}}
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
 
     <title>IndigoShine-Hotel</title>
     </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
-    
-    <!-- navbar -->
-    @include('templatelandingpage.navbar')
-    <!-- end navbar -->
 
     <!-- jumbotron -->
     <div class="container-fluid" id="gambarhotel">
-        <div class="jumbotron">
+        <div class="jumbotron bg-primary">
             <div class="container-fluid text-dark p-5">
             <div class="container p-5">
                 <div class="row">
@@ -30,7 +27,7 @@
                         <h1 class="display-4 fw-bold shadow">Welcome to IndigoShine Hotel</h1>
                         <hr>
                         <p class="shadow text-light">Go to IndigoShine Hotel Website</p>
-                        <a href="/" class="btn btn-primary w-25">Home</a>
+                        {{-- <a href="/" class="btn btn-primary w-25">Home</a> --}}
                     </div>
                 </div>
             </div>
@@ -55,32 +52,26 @@
                     <th scope="col">Harga Kamar</th>
                     <th scope="col">Lama Menginap</th>
                     <th scope="col">Total</th>
-                    <th scope="col">Cetak Pdf</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($guestbooking as $g)
+                {{-- @foreach ($guests as $g) --}}
                     <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$g->nama}}</td>
-                        <td>{{$g->email}}</td>
-                        <td>{{$g->kodebooking}}</td>
-                        <td>{{$g->kamar->tipe_kamar->tipe_kamar}}</td>
-                        <td>{{$g->kamar->hargakamarpermalam}}</td>
-                        <td>{{$g->lama_menginap}}</td>
-                        <td>{{number_format($g->kamar->hargakamarpermalam * $g->lama_menginap)}}</td>
-                        <td><a target="_blank" href="/guest/pdf/{{$g->id}}" class="btn btn-primary my-3">Cetak Pdf</a></td>
+                        {{-- <td>{{$loop->iteration}}</td> --}}
+                        <td>{{$guests->nama}}</td>
+                        <td>{{$guests->email}}</td>
+                        <td>{{$guests->kodebooking}}</td>
+                        <td>{{$guests->kamar->tipe_kamar->tipe_kamar}}</td>
+                        <td>{{$guests->kamar->hargakamarpermalam}}</td>
+                        <td>{{$guests->lama_menginap}}</td>
+                        <td>{{number_format($guests->kamar->hargakamarpermalam * $guests->lama_menginap)}}</td>
                     </tr>
-                @endforeach
+                {{-- @endforeach --}}
                 </tbody>
             </table>
         </div>
     </div>
     {{-- lembar baru khusus tamu yang tidak punya akun --}}
-
-    <!-- footer -->
-    @include('templatelandingpage.footer')
-    <!-- end footer -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -96,73 +87,6 @@
 </html>
 
 <!-- css -->
-<style>
-    html{
-        scroll-behavior: smooth;
-    }
-    .navbar{
-        background-color: #4b0082;
-    }
-    #gambarhotel{
-        background-image: url('gambarhotel/halamanhotel2.jpg');
-        background-repeat: no-repeat;
-        /* background-size: auto; */
-        background-size: 100% 100%;
-    }
-    .about{
-        padding-top: 3.5em;
-        padding-bottom: 3.5em;
-    }
-    #buttontop{
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    border-radius: 4px;
-    scroll-behavior: smooth;
-    }
-    .facility{
-        padding-top: 3.5em;
-        padding-bottom: 3.5em;
-    }
-    .faq{
-        padding-top: 3.5em;
-        padding-bottom: 3.5em;
-    }
-    .room{
-        padding-top: 3.5em;
-        padding-bottom: 3.5em;
-    }
-    .saran{
-        padding-top: 3.5em;
-        padding-bottom: 3.5em;
-    }
-    .footer{
-        height: 100px;
-        background-color: #4b0082;
-    }
-    .card-header{
-        background-color: #4b0082;
-        color: whitesmoke;
-    }
-    .btn-primary{
-        background-color: #4b0082;
-        color: whitesmoke;
-        border: #4b0082;
-    }
-    .btn-primary:hover{
-        background-color: #4b0082;
-        color: whitesmoke;
-        border: #4b0082;
-    }
-</style>
 <!-- end css -->
 <!-- js -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
