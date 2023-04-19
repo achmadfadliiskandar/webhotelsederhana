@@ -52,6 +52,8 @@ Route::get('/resepsionis/pdfdatatamu','cetakpdfresepsionis');
 Route::get('/resepsionis/pdfcancel','cetakcancel');
 // cancel payment
 Route::delete('/resepsionis/cancelpayment/{id}','cancelpayment');
+// data tamu tanpa akun 
+Route::get('/resepsionis.guestorder','guestorder');
 // halaman mengubah status kamar
 Route::get('/resepsionis.changestatus','changestatus');
 // melakukan proses mengubah status kamar

@@ -155,7 +155,7 @@
                     </ul>
                 </div>
             @endif
-                <form action="/guest/store" method="POST">
+                <form action="/guest/store" method="POST" onsubmit="return confirm('apa kamu yakin? karena jika kamu mengsubmit tombol ini maka kamu telah memesan tombol ini')">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">

@@ -12,6 +12,7 @@ use App\Models\FasilitasUmum;
 use App\Models\Kamar;
 use App\Models\KamarOrder;
 use App\Models\User;
+use App\Models\GuestBooking;
 use Barryvdh\DomPDF\Facade;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
@@ -189,6 +190,10 @@ class WelcomeController extends Controller
     public function changestatus(){
         $kamars = Kamar::with('tipe_kamar')->get();
         return view('resepsionis.changestatus',compact('kamars'));
+    }
+    public function guestorder(){
+        $guestbooking = GuestBooking::all();
+        return view('resepsionis.guestorder',compact("guestbooking"));
     }
     // query ubah status kamar
     public function changesroom(Request $request,$id){

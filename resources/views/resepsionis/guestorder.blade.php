@@ -1,168 +1,69 @@
 @extends('template.master')
 
-@section('title', 'Halaman Khusus untuk user yang tidak memliki akun')
+@section('title', 'Data Tamu Tanpa Akun')
 
-@section('active','Halaman Guest / user yg tidak memiliki akun')
+@section('active', 'Data Tamu Tanpa Akun')
 
 @section('content')
-<h2>Guest Order</h2>
-    <div class="alert alert-info">Order Khusus Pengguna yang tidak memiliki akun</div>
-<div class="container">
+    <h2>Data Tamu Tanpa Akun</h2>
     @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
-        {{-- @if ($errors->any())
-            <div class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                        <p class="text-danger">{{ $error }}</p>
-                    @endforeach
-            </div>
-        @endif --}}
-        @if (session('fail'))
-            <div class="alert alert-danger">
-                {{ session('fail') }}
-            </div>
-        @endif
-        {{-- <div class="alert alert-danger"><strong style="text-transform: capitalize;">note</strong>: untuk yang tidak memiliki akun</div> --}}
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="alert alert-info">Jika Terjadi Kecurangan dalam pemesanan Tolong Sampaikan/Adukan Ke Pihak Hotel silahkan hubungi melalui nomor ini : <strong>081878156894</strong> dan Sertakan bukti berupa vidio ataupun ss </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="alert alert-warning" style="text-transform: capitalize;">jika sudah berhasil terpesan maka pesanan kamar yang anda inputkan disarankan langsung pilih nama kamar yang anda pesan atau nama anda dan tolong jangan beritahu kode booking anda kepada siapapun!!</div>
-            </div>
-            <div class="col-sm-4">
-                <div class="alert alert-secondary" style="text-transform: capitalize;">dan disarankan ketika sudah yakin silahkan pilih melalui checkbox dan langsung klik Cetak Pdf</div>
-            </div>
-        </div>
-        <div style="overflow-x:auto">
-            <form action="/insertpdf/store" method="post">
-                @csrf
-            <table id="example" class="table table-striped table table-hover table table-bordered" style="width:100%">
+    <div class="alert alert-success">
+        {{session('status')}}
+    </div>
+    @endif
+    <div class="alert alert-secondary text-white">Data Tamu Tanpa akun untuk pengguna yang tidak mendaftarkan akunya/tidak menjadi member kita</div>
+    <div class="container">
+        <div style="overflow-x:auto;">
+            <table class="table table-bordered table table-hover table table-striped" id="example">
                 <thead>
-                    <tr>
-                        <th>No</th>
-                        {{-- <th>Checlist</th> --}}
-                        <th>Nama</th>
-                        <th>KodeBooking</th>
-                        <th>No Telpon</th>
-                        <th>Email</th>
-                        <th>Kamar</th>
-                        <th>Keterangan</th>
-                        <th>Action</th>
-                    </tr>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">KodeBooking</th>
+                    <th scope="col">Kamar</th>
+                    <th scope="col">Harga Kamar</th>
+                    <th scope="col">Lama Menginap</th>
+                    <th scope="col">Mulai Menginap</th>
+                    <th scope="col">Selesai Menginap</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Keterangan</th>
+                    <th scope="col">Cetak Pdf</th>
+                </tr>
                 </thead>
                 <tbody>
-                @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @forelse ($guests as $guest)
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$guest->nama}}</td>
-                            <td>{{$guest->kodebooking}}</td>
-                            <td>{{$guest->nomortelpon}}</td>
-                            <td>{{$guest->email}}</td>
-                            <td>{{$guest->kamar->tipe_kamar->tipe_kamar}}</td>
-                            <td>
-                                @if($guest->konfirmasi == "DONE")
-                                <span class="text-danger">Done</span>
-                                @else
-                                <span class="text-warning">Not Done</span>
-                                @endif
-                            </td>
-                            <td>
-                                {{-- <form action="" method="post" class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Batalkan</button>
-                                </form> --}}
-                                <button type="button" class="btn btn-danger cancelorder" value="{{$guest->id}}">
-                                    Batalkan
-                                </button>
-                            </td>
-                        @empty
-                            <td colspan="8" class="text-danger text-center text-capitalize">tidak ada data</td>
-                        @endforelse
-                    </tr>
-                </tbody>
-                <tfoot>
+                @foreach ($guestbooking as $g)
                     <tr>
-                        <th>No</th>
-                        {{-- <th>Checlist</th> --}}
-                        <th>Nama</th>
-                        <th>KodeBooking</th>
-                        <th>No Telpon</th>
-                        <th>Email</th>
-                        <th>Kamar</th>
-                        <th>Keterangan</th>
-                        <th>Action</th>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$g->nama}}</td>
+                        <td>{{$g->email}}</td>
+                        <td>{{$g->kodebooking}}</td>
+                        <td>{{$g->kamar->tipe_kamar->tipe_kamar}}</td>
+                        <td>{{$g->kamar->hargakamarpermalam}}</td>
+                        <td>{{$g->lama_menginap}}</td>
+                        <td>{{$g->rencanacheckin}}</td>
+                        <td>{{$g->rencanacheckout}}</td>
+                        <td>{{number_format($g->kamar->hargakamarpermalam * $g->lama_menginap)}}</td>
+                        @if (date("Y-m-d") >= $g->rencanacheckout)
+                        <td>Sudah Selesai</td>
+                        @else
+                        <td>Belum Selesai</td>
+                        @endif
+                        <td><a target="_blank" href="/guest/pdf/{{$g->id}}" class="btn btn-primary my-3">Cetak Pdf</a></td>
                     </tr>
-                </tfoot>
+                @endforeach
+                </tbody>
+
             </table>
-            {{-- <button type="submit" class="btn btn-primary my-3 w-100" style="background-color: #123456;">Cetak Pdf</button> --}}
-        </form>
+
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cancel Order</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                <form action="/cancel-guest/" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <p>Apa Kamu yakin membatalkan order ini ? </p>
-                    <input type="hidden" name="id" id="id" class="form-control">
-                    <div class="mb-3" style="display: none;">
-                        <label for="kodebooking">Kode Booking</label>
-                        <input type="hidden" name="kodebooking" id="kodebooking" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="kodedelete">Kode Delete</label>
-                        <input type="text" name="kodedelete" required id="kodedelete" class="form-control">
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Batalkan Sekarang</button>
-                </form>
-                </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready( function () {
-            $('#example').DataTable();
-            $(document).on('click','.cancelorder', function () {
-                var id = $(this).val();
-                // alert(id);
-                $('#exampleModal').modal('show');
-                $('#id').val(id);
-                $.ajax({
-                    type: "GET",
-                    url: "/get-cancel/" + id,
-                    success: function (response) {
-                        $("#kodebooking").val(response.guest.kodebooking)
-                    }
-                });
-            });
-        });
-    </script>
+    </div>
 @endsection
+
+@push('datatables')
+<script>
+$(document).ready(function() {
+$('#example').DataTable();
+});
+</script>
+@endpush
