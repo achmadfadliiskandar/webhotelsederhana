@@ -43,6 +43,9 @@
     <div class="container">
         <h1 class="text-center mt-3 mb-3">Guest Order</h1>
         <p class="text-center">khusus tamu yang tidak memiliki akun</p>
+        <div class="text-center">
+            <h2>ShortCut : <span class="badge bg-secondary my-3">ctrl+f</span></h2>
+        </div>
         <div style="overflow-x:auto;">
             <table class="table table-bordered table table-hover table table-striped">
                 <thead>
